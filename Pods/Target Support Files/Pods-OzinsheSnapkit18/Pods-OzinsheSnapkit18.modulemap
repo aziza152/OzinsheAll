@@ -1,0 +1,6 @@
+framework module Pods_OzinsheSnapkit18 {
+  umbrella header "Pods-OzinsheSnapkit18-umbrella.h"
+
+  export *
+  module * { export * }
+}
