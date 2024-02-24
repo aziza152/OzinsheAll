@@ -1,13 +1,13 @@
 //
-//  FavoriteViewController.swift
+//  MovieInfoViewController.swift
 //  OzinsheSnapkit18
 //
-//  Created by Aziza on 25.02.2024.
+//  Created by Aziza on 21.02.2024.
 //
 
 import UIKit
 
-class FavoriteViewController: UIViewController {
+class MovieInfoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
