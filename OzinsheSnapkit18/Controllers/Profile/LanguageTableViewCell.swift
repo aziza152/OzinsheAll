@@ -1,31 +1,33 @@
 //
-//  SeasonSeriesTableViewCell.swift
+//  LanguageTableViewCell.swift
 //  OzinsheSnapkit18
 //
-//  Created by Aziza on 24.02.2024.
+//  Created by Aziza on 02.03.2024.
 //
 
 import UIKit
 
-class SeasonSeriesTableViewCell: UITableViewCell {
+class LanguageTableViewCell: UITableViewCell {
 
-    let seriesLabel = {
+    let identifier = "LanguageCell"
+  
+    let languageLabel = {
         let label = UILabel()
-        label.font = UIFont(name: "SFProDisplay-Bold", size: 14)
+        label.text = "Қазақша"
+        label.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
         label.textColor = UIColor(named: "111827 - FFFFFF")
         
         return label
     }()
     
-    let seriesImage = {
+    let checkImage = {
         let image = UIImageView()
-        image.layer.cornerRadius = 12
-        image.clipsToBounds = true
+        image.image = UIImage(named: "check")
         
         return image
     }()
     
-    let lineView = {
+    let grayView = {
         let view = UIView()
         view.backgroundColor = UIColor(red: 0.82, green: 0.835, blue: 0.859, alpha: 1)
         
@@ -45,26 +47,25 @@ class SeasonSeriesTableViewCell: UITableViewCell {
     func setupUI() {
         contentView.backgroundColor = UIColor(named: "FFFFFF - 111827")
         
-        contentView.addSubview(seriesImage)
-        contentView.addSubview(seriesLabel)
-        contentView.addSubview(lineView)
+        contentView.addSubview(languageLabel)
+        contentView.addSubview(checkImage)
+        contentView.addSubview(grayView)
         
-        seriesLabel.snp.makeConstraints { make in
-            make.top.equalTo(seriesImage.snp.bottom).offset(8)
-            make.right.left.equalToSuperview().inset(24)
+        languageLabel.snp.makeConstraints { make in
+            make.left.equalToSuperview().inset(24)
+            make.centerY.equalToSuperview()
         }
         
-        seriesImage.snp.makeConstraints { make in
-            make.right.left.equalToSuperview().inset(24)
-            make.top.equalToSuperview().inset(16)
-            make.height.equalTo(178)
+        checkImage.snp.makeConstraints { make in
+            make.right.equalToSuperview().inset(24)
+            make.centerY.equalToSuperview()
+            make.size.equalTo(CGSize(width: 24, height: 24))
         }
         
-        lineView.snp.makeConstraints { make in
-            make.top.equalTo(seriesLabel.snp.bottom).offset(16)
+        grayView.snp.makeConstraints { make in
             make.right.left.equalToSuperview().inset(24)
+            make.bottom.equalToSuperview()
             make.height.equalTo(1)
         }
     }
 }
-

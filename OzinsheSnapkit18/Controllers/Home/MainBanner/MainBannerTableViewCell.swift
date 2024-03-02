@@ -9,8 +9,9 @@ import UIKit
 
 class MainBannerTableViewCell: UITableViewCell {
 
-    
+    var delegate: MovieProtocol?
     var movies: [BannerMovie] = []
+    var movie: [Movie] = []
     
     let bannerCollectionView: UICollectionView = {
         
@@ -22,7 +23,6 @@ class MainBannerTableViewCell: UITableViewCell {
         layout.minimumInteritemSpacing = 16
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-   
         collectionView.register(BannerCell.self, forCellWithReuseIdentifier: "BannerCell")
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundColor = UIColor(named: "FFFFFF - 111827")
@@ -73,5 +73,8 @@ extension MainBannerTableViewCell: UICollectionViewDelegate, UICollectionViewDat
         cell.setData(movie: movies[indexPath.row])
         
         return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.movieDidSelect(movie: movies[indexPath.row].movie)
     }
 }

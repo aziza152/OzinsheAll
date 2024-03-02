@@ -19,7 +19,6 @@ class SeasonsSeriesCollectionViewCell: UICollectionViewCell {
     
     let seasonLabel = {
         let label = UILabel()
-        label.text = "1 сезон"
         label.textAlignment = .center
         label.font = UIFont(name: "SFProDisplay-Semibold", size: 12)
         label.textColor = .white

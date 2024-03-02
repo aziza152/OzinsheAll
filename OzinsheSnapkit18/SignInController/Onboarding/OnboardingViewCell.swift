@@ -73,7 +73,7 @@ class OnboardingViewCell: UICollectionViewCell {
         
         
         let attributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont(name: "SFProDisplay-Medium", size: 14)!,
+            .font: UIFont(name: "SFProDisplay-Regular", size: 14)!,
             .foregroundColor: UIColor(red: 0.42, green: 0.447, blue: 0.502, alpha: 1),
             .paragraphStyle: paragraphStyle
         ]

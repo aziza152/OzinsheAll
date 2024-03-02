@@ -39,7 +39,7 @@ class TabBarController: UITabBarController {
         let navigationSearchVc = UINavigationController(rootViewController: searchVC)
         let navigationFavoriteVc = UINavigationController(rootViewController: favoriteVC)
         let navigationProfileVc = UINavigationController(rootViewController: profileVC)
-        
-        setViewControllers([navigationHomeVc, navigationSearchVc, navigationFavoriteVc, navigationProfileVc], animated: true)
+            
+       setViewControllers([navigationHomeVc, navigationSearchVc, navigationFavoriteVc, navigationProfileVc], animated: true)
     }
 }

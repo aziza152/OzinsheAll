@@ -1,13 +1,13 @@
 //
-//  MovieInfoViewController.swift
+//  LogOutViewController.swift
 //  OzinsheSnapkit18
 //
-//  Created by Aziza on 21.02.2024.
+//  Created by Aziza on 02.03.2024.
 //
 
 import UIKit
 
-class MovieInfoViewController: UIViewController {
+class LogOutViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

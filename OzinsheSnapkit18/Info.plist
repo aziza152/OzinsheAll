@@ -11,9 +11,7 @@
 	<array>
 		<string>SFProDisplayBold.ttf</string>
 		<string>SFProDisplayRegular.ttf</string>
-		<string>SF-Pro-Display-Semibold.ttf</string>
-		<string>SFProDisplayRegular.otf</string>
-		<string>SF-Pro-Display-Medium.otf</string>
+		<string>SFProDisplaySemibold.ttf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

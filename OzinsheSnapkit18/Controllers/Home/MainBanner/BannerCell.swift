@@ -12,8 +12,6 @@ import SnapKit
 
 class BannerCell: UICollectionViewCell {
     
-    let identifier = "BannerCell"
-    
      let titleLabel = {
         let label = UILabel()
          label.font = UIFont(name: "SFProDisplay-Bold", size: 14)
