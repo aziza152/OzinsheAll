@@ -12,18 +12,20 @@ import SwiftyJSON
 
 class FavoriteViewController: UIViewController {
     
+    //MARK: - Variables
     var favorite:[Movie] = []
     
     lazy var tableView: UITableView = {
-        let favTableView = UITableView()
-        favTableView.backgroundColor = UIColor(named: "FFFFFF - 111827")
-        favTableView.register(MovieTableViewCell.self, forCellReuseIdentifier: "MovieTableViewCell")
-        favTableView.dataSource = self
-        favTableView.delegate = self
+        let tableView = UITableView()
+        tableView.backgroundColor = UIColor(named: "FFFFFF - 111827")
+        tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: "MovieTableViewCell")
+        tableView.dataSource = self
+        tableView.delegate = self
         
-        return favTableView
+        return tableView
     }()
     
+    //MARK: - Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         downloadFavorites()
     }
@@ -35,6 +37,7 @@ class FavoriteViewController: UIViewController {
         view.backgroundColor = UIColor(named: "FFFFFF - 111827")
     }
     
+    //MARK: - setupUI
     func setupUI() {
         navigationItem.title = "FAVORITE_NAVIGATION".localized()
         
@@ -45,6 +48,7 @@ class FavoriteViewController: UIViewController {
         }
     }
     
+    //MARK: - downloadFavorites
     func downloadFavorites() {
         self.favorite.removeAll()
         

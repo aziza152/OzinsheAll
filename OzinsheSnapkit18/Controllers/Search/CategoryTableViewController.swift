@@ -11,16 +11,14 @@ import Alamofire
 import SwiftyJSON
 
 class CategoryTableViewController: UITableViewController {
-    
-    let identifier = "SearchTableViewController"
 
+    //MARK: - Variables
     var categoryID = 0
     var categoryName = ""
-    
     var isLoading: Bool = false
-    
     var movies:[Movie] = []
     
+    //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,7 +30,7 @@ class CategoryTableViewController: UITableViewController {
         self.title = categoryName
         navigationItem.title = ""
         
-        downloadMoviesByCategory()
+        downloadCategory()
     }
     
     @objc func handleRefresh() {
@@ -40,11 +38,12 @@ class CategoryTableViewController: UITableViewController {
             isLoading = true
             movies.removeAll()
             tableView.reloadData()
-            downloadMoviesByCategory()
+            downloadCategory()
         }
     }
     
-    func downloadMoviesByCategory() {
+    //MARK: - downloadCategory
+    func downloadCategory() {
         SVProgressHUD.show()
         
         let headers: HTTPHeaders = ["Authorization": "Bearer \(Storage.sharedInstance.accessToken)"]
@@ -89,7 +88,7 @@ class CategoryTableViewController: UITableViewController {
         }
     }
 
-    // MARK: - Table view data source
+    // MARK: - Table view
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections

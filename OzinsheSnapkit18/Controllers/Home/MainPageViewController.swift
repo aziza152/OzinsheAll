@@ -13,10 +13,9 @@ import SVProgressHUD
 
 class MainPageViewController: UIViewController, MovieProtocol {
     
-    
+//MARK: - Variables
     var mainMovies: [MainMovies] = []
     
-   
     let tableView = {
         let tableView = UITableView()
         tableView.separatorStyle = .none
@@ -27,6 +26,7 @@ class MainPageViewController: UIViewController, MovieProtocol {
         return tableView
     }()
 
+//MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -34,7 +34,8 @@ class MainPageViewController: UIViewController, MovieProtocol {
         addBarImage()
        
     }
-    
+
+//MARK: - addBarImage
     func addBarImage() {
         let image = UIImage(named: "logoMainPage")
         let logoImageView = UIImageView(image: image)
@@ -43,6 +44,7 @@ class MainPageViewController: UIViewController, MovieProtocol {
         
     }
     
+//MARK: - setupUI
     func setupUI() {
         view.addSubview(tableView)
         view.backgroundColor = UIColor(named: "FFFFFF - 111827")
@@ -59,6 +61,7 @@ class MainPageViewController: UIViewController, MovieProtocol {
         }
     }
     
+    //MARK: - downloadMainBanners
     func downloadMainBanners() {
         SVProgressHUD.show()
         
@@ -98,6 +101,8 @@ class MainPageViewController: UIViewController, MovieProtocol {
            self.downloadHistory()
         }
     }
+    
+    //MARK: - downloadHistory
     func downloadHistory() {
         let headers:HTTPHeaders = ["Authorization" : "Bearer \(Storage.sharedInstance.accessToken)"]
         SVProgressHUD.show()
@@ -122,6 +127,8 @@ class MainPageViewController: UIViewController, MovieProtocol {
         self.downloadMainMovies()
         }
     }
+    
+    //MARK: - downloadMainMovies
     func downloadMainMovies() {
         let headers:HTTPHeaders = ["Authorization" : "Bearer \(Storage.sharedInstance.accessToken)"]
         SVProgressHUD.show()
@@ -143,6 +150,8 @@ class MainPageViewController: UIViewController, MovieProtocol {
             }
         }
     }
+    
+    //MARK: - downloadGenres
     func downloadGenres() {
         let headers:HTTPHeaders = ["Authorization" : "Bearer \(Storage.sharedInstance.accessToken)"]
         SVProgressHUD.show()
@@ -167,6 +176,8 @@ class MainPageViewController: UIViewController, MovieProtocol {
             }
         }
     }
+    
+    //MARK: - downloadCategoryAges
     func downloadCategoryAges() {
         SVProgressHUD.show()
         
@@ -197,6 +208,8 @@ class MainPageViewController: UIViewController, MovieProtocol {
         }
 
 }
+
+// MARK: - UITableViewDelegate, UITableViewDataSource
 extension MainPageViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {

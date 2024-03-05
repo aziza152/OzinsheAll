@@ -10,12 +10,14 @@ import UIKit
 import SVProgressHUD
 import Alamofire
 import SwiftyJSON
+import Localize_Swift
 
 class ChangePasswordViewController: UIViewController {
 
+    //MARK: - Add UI Elements
     let passwordLabel = {
         let label = UILabel()
-        label.text = "Құпиясөз"
+        label.text = "Құпия сөз"
         label.font = UIFont(name: "SFProDisplay-Bold", size: 14)
         label.textColor = UIColor(named: "111827 - FFFFFF")
         
@@ -51,7 +53,7 @@ class ChangePasswordViewController: UIViewController {
     
     let repeatPasswordLabel = {
         let label = UILabel()
-        label.text = "Құпиясөзді қайталаңыз"
+        label.text = "Құпия сөзді қайталаңыз"
         label.font = UIFont(name: "SFProDisplay-Bold", size: 14)
         label.textColor = UIColor(named: "111827 - FFFFFF")
         
@@ -87,28 +89,30 @@ class ChangePasswordViewController: UIViewController {
     
     let saveChangesButton = {
         let button = UIButton()
-        button.setTitle("Өзгерістерді сақтау", for: .normal)
+        button.setTitle("Өзгерістерді сақтау".localized(), for: .normal)
         button.backgroundColor = UIColor(red: 0.5, green: 0.18, blue: 0.99, alpha: 1)
         button.titleLabel?.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
         button.layer.cornerRadius = 12
+        button.addTarget(self, action: #selector(saveChangesButtonTapped), for: .touchUpInside)
         
         return button
     }()
     
+    //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupUI()
-        localizeLanguage()
+      localizeLanguage()
     }
     
     func localizeLanguage() {
-        passwordTextField.placeholder = "USER_PASSWORD_CHANGE".localized()
-        repeatPasswordTextField.placeholder = "USER_PASSWORD_CHANGE".localized()
-        saveChangesButton.setTitle("US_INFO_SAVE_BUTTON".localized(), for: .normal)
-        passwordLabel.text = "CHANGE_PASSWORD_LABEL".localized()
-        repeatPasswordLabel.text = "REPEAT_PASSWORD_LABEL".localized()
-        navigationItem.title = "CHANGE_PASSWORD_NAVIGATION".localized()
+        passwordLabel.text = "PASSWORD".localized()
+        passwordTextField.placeholder = "YOUR_PASSWORD".localized()
+        repeatPasswordLabel.text = "REPEAT_PASSWORD".localized()
+        repeatPasswordTextField.placeholder = "YOUR_PASSWORD".localized()
+        saveChangesButton.setTitle("PASS_CHANGED".localized(), for: .normal)
+        navigationItem.title = "CHANGE_PASSWORD".localized()
     }
     
     @objc func showPasswordButtonTapped() {

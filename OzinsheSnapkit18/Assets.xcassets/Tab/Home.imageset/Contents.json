@@ -6,12 +6,45 @@
       "scale" : "1x"
     },
     {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "Home-Filled.pdf",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
       "filename" : "Home-2.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "Home-Filled 1.pdf",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
       "filename" : "Home-3.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "Home-Filled 2.pdf",
       "idiom" : "universal",
       "scale" : "3x"
     }

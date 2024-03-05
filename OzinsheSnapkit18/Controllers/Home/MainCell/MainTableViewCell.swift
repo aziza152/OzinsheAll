@@ -7,15 +7,17 @@
 
 import UIKit
 
+
 class MainTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate {
-    
+
+// MARK: - Variables
     var mainMovie = MainMovies()
     var movies: [Movie] = []
     var delegate: MovieProtocol?
     
+//MARK: - Add UI Elements
     let titleLabel = {
         let label = UILabel()
-      //  label.text = "yuiguihgiuh"
         label.font = UIFont(name: "SFProDisplay-Bold", size: 16)
         label.textColor = UIColor(red: 0.07, green: 0.09, blue: 0.15, alpha: 1)
         
@@ -36,7 +38,7 @@ class MainTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollecti
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 16
         layout.minimumInteritemSpacing = 16
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 24, bottom: 10, right: 24)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
       layout.itemSize = CGSize(width: 112, height: 220)
        
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -46,7 +48,8 @@ class MainTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollecti
         
         return collectionView
     }()
-    
+   
+// MARK: - Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super .init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -58,11 +61,15 @@ class MainTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollecti
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+// MARK: - setData
     func setData(movies: MainMovies) {
         self.mainMovie = movies
         titleLabel.text = mainMovie.categoryName
         mainCollectionView.reloadData()
     }
+    
+// MARK: - setupUI
     func setupUI() {
         contentView.backgroundColor = UIColor(named: "FFFFFF - 111827")
         contentView.addSubview(titleLabel)
@@ -74,9 +81,9 @@ class MainTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollecti
             make.top.equalToSuperview()
         }
         mainCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom)
+            make.top.equalTo(titleLabel.snp.bottom).inset(-16)
             make.left.right.equalToSuperview()
-            make.bottom.equalToSuperview()
+            make.bottom.equalToSuperview().inset(10)
         }
         allButton.snp.makeConstraints { make in
             make.right.equalToSuperview().inset(24)
@@ -84,7 +91,7 @@ class MainTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollecti
         }
     }
     
-    
+    //MARK: - collectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return mainMovie.movies.count
     }

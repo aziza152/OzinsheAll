@@ -10,8 +10,9 @@ import UIKit
 import SDWebImage
 import SnapKit
 
-class BannerCell: UICollectionViewCell {
+class MainBannerCollectionViewCell: UICollectionViewCell {
     
+    //MARK: - Add UI Elements
      let titleLabel = {
         let label = UILabel()
          label.font = UIFont(name: "SFProDisplay-Bold", size: 14)
@@ -52,6 +53,7 @@ class BannerCell: UICollectionViewCell {
         
         return label
     }()
+// MARK: - Initialization
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -65,6 +67,7 @@ class BannerCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+//MARK: - setData
     func setData(movie: BannerMovie) {
         
         if let categoryName = movie.movie.categories.first?.name {
@@ -77,6 +80,7 @@ class BannerCell: UICollectionViewCell {
         imageView.sd_setImage(with: URL(string: movie.link)!)
     }
     
+//MARK: - setupUI
     func setupUI() {
         addSubview(titleLabel)
         addSubview(descriptionLabel)

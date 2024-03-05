@@ -10,193 +10,302 @@ import SnapKit
 import Localize_Swift
 
 class ProfileViewController: UIViewController, LanguageProtocol {
+    func languageDidChande() {
+        configureViews()
+    }
     
+
     //MARK: - Add UI Elements
-    let profileImageView = {
-        let profImageView = UIImageView()
-        
-        profImageView.image = UIImage(named: "avatar")
-        
-        return profImageView
+    let logoutButton = {
+    let button = UIBarButtonItem()
+        button.image = UIImage(named: "Logout")
+        button.tintColor = .red
+        button.action = #selector(logout)
+      //  let logoutButton = UIBarButtonItem(image: UIImage(named: "Logout"), style: .plain, target: self, action: #selector(logout))
+
+        return button
     }()
     
+    let avatarImage = {
+    let image = UIImageView()
+        image.image = UIImage(named: "Avatar")
+            
+        return image
+    }()
+        
     let profileLabel = {
-        let label = UILabel()
-        
-        label.text = "My Profile"
+    let label = UILabel()
         label.font = UIFont(name: "SFProDisplay-Bold", size: 24)
-        label.textColor = UIColor(named: "111827 - FFFFFF")
-        
+        label.textColor = UIColor(named: "111827-FFFFFF")
+            
         return label
     }()
-    
-    let subtitleProfileLabel = {
-        let label = UILabel()
         
-        label.text = "ali@gmail.com"
+    let emailLabel = {
+    let label = UILabel()
         label.font = UIFont(name: "SFProDisplay-Regular", size: 14)
-        label.textColor = UIColor(red: 0.612, green: 0.639, blue: 0.686, alpha: 1)
-        
+        label.textColor = UIColor(red: 0.61, green: 0.64, blue: 0.69, alpha: 1)
+            
         return label
     }()
-    
-    //MARK: - Language Button Elements
-    let backView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(named: "FFFFFF - 111827")
+        
+    let backgroundView = {
+    let view = UIView()
+        view.backgroundColor = UIColor(named: "#F9FAFB-#111827") //UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
+            
+        return view
+    }()
+        
+    let personalButton = {
+    let button = UIButton()
+        button.setTitleColor(UIColor(named: "111827-FFFFFF"), for: .normal)
+        button.titleLabel?.font = UIFont(name: "SFProDisplay-Medium", size: 16)
+        button.contentHorizontalAlignment = .left
+        button.addTarget(self, action: #selector(editPersonalData), for: .touchUpInside)
+            
+        return button
+    }()
+        
+    let editLabel = {
+    let label = UILabel()
+        label.font = UIFont(name: "SFProDisplay-SemiBold", size: 12)
+        label.textColor = UIColor(red: 0.61, green: 0.64, blue: 0.69, alpha: 1)
+            
+        return label
+    }()
+        
+    let chevron1 = {
+    let image = UIImageView()
+        image.image = UIImage(named: "Chevron")
+        
+        return image
+    }()
+        
+    let line1 = {
+    let view = UIView()
+        view.backgroundColor = UIColor(named: "D1D5DB-1C2431")
+        
+        return view
+    }()
+        
+    let changePasswordButton = {
+    let button = UIButton()
+        button.setTitleColor(UIColor(named: "111827-FFFFFF"), for: .normal)
+        button.titleLabel?.font = UIFont(name: "SFProDisplay-Medium", size: 16)
+        button.contentHorizontalAlignment = .left
+        button.addTarget(self, action: #selector(openChangePassword), for: .touchUpInside)
+            
+        return button
+    }()
+        
+    let chevron2 = {
+    let image = UIImageView()
+        image.image = UIImage(named: "Chevron")
+            
+            return image
+    }()
+        
+    let line2 = {
+    let view = UIView()
+        view.backgroundColor = UIColor(named: "D1D5DB-1C2431")
+            
+        return view
+    }()
+        
+    let languageButton = {
+    let button = UIButton()
+        button.setTitleColor(UIColor(named: "111827-FFFFFF"), for: .normal)
+        button.titleLabel?.font = UIFont(name: "SFProDisplay-Medium", size: 16)
+        button.contentHorizontalAlignment = .left
+        button.addTarget(self, action: #selector(openLanguageVC), for: .touchUpInside)
+            
+        return button
+    }()
+        
+    let languageLabel = {
+    let label = UILabel()
+        label.text = "Қазақша"
+        label.font = UIFont(name: "SFProDisplay-SemiBold", size: 12)
+        label.textColor = UIColor(red: 0.61, green: 0.64, blue: 0.69, alpha: 1)
+            
+        return label
+    }()
+        
+    let chevron3 = {
+    let image = UIImageView()
+        image.image = UIImage(named: "Chevron")
+            
+        return image
+    }()
+        
+    let line3 = {
+    let view = UIView()
+        view.backgroundColor = UIColor(named: "D1D5DB-1C2431")
+            
         return view
     }()
     
-    lazy var languageButton = {
-        let button = UIButton()
-        
-        button.setTitle("Language", for: .normal)
-        button.setTitleColor(UIColor(named: "111827 - FFFFFF"), for: .normal)
-        button.titleLabel?.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
-        button.contentHorizontalAlignment = .left
-        button.addTarget(self, action: #selector(languageButtonTapped), for: .touchUpInside)
-        
-        return button
-    }()
-    
-    let languageLabel = {
-        let label = UILabel()
-        
-        label.text = "English"
-        label.textColor = UIColor(red: 0.612, green: 0.639, blue: 0.686, alpha: 1)
-        label.font = UIFont(name: "SFProDisplay-Semibold", size: 12)
-        
-        return label
-    }()
-    
-    let languageArrowImage = {
-        let arrowImage = UIImageView()
-        
-        arrowImage.image = UIImage(named: "profileArrow")
-        
-        return arrowImage
-    }()
-    
-    let languageCellView = {
-        let cell = UIView()
-        
-        cell.backgroundColor = UIColor(red: 0.82, green: 0.84, blue: 0.86, alpha: 1.00)
-        
-        return cell
-    }()
-    
-    //MARK: - User Info Button Elements
-    lazy var userInfoButton = {
-        let button = UIButton()
-        
-        button.setTitle("Personal Information", for: .normal)
-        button.setTitleColor(UIColor(named: "111827 - FFFFFF"), for: .normal)
-        button.titleLabel?.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
-        button.contentHorizontalAlignment = .left
-        button.addTarget(self, action: #selector(userInfoButtonTapped), for: .touchUpInside)
-        
-        return button
-    }()
-    
-    let userInfoLabel = {
-        let label = UILabel()
-        
-        label.text = "Edit"
-        label.textColor = UIColor(red: 0.612, green: 0.639, blue: 0.686, alpha: 1)
-        label.font = UIFont(name: "SFProDisplay-Semibold", size: 12)
-        
-        return label
-    }()
-    
-    let userInfoArrowImage = {
-        let arrowImage = UIImageView()
-        
-        arrowImage.image = UIImage(named: "profileArrow")
-        
-        return arrowImage
-    }()
-    
-    let userInfoCellView = {
-        let cell = UIView()
-        
-        cell.backgroundColor = UIColor(red: 0.82, green: 0.84, blue: 0.86, alpha: 1.00)
-        
-        return cell
-    }()
-    
-    //MARK: - Change Password Button Elements
-    lazy var passwordEditButton = {
-        let button = UIButton()
-        
-        button.setTitle("Change Password", for: .normal)
-        button.setTitleColor(UIColor(named: "111827 - FFFFFF"), for: .normal)
-        button.titleLabel?.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
-        button.contentHorizontalAlignment = .left
-        button.addTarget(self, action: #selector(changePasswordTapped), for: .touchUpInside)
-        
-        return button
-    }()
-    
-    let passwordArrowImage = {
-        let arrowImage = UIImageView()
-        
-        arrowImage.image = UIImage(named: "profileArrow")
-        
-        return arrowImage
-    }()
-    
-    let passwordCellView = {
-        let cell = UIView()
-        
-        cell.backgroundColor = UIColor(red: 0.82, green: 0.84, blue: 0.86, alpha: 1.00)
-        
-        return cell
-    }()
-    
-    //MARK: - Dark Mode Elements
     let darkModeLabel = {
-        let label = UILabel()
-        
-        label.text = "Dark Mode"
-        label.textColor = UIColor(named: "111827 - FFFFFF")
-        label.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
-        
+    let label = UILabel()
+        label.textColor = UIColor(named: "111827-FFFFFF")
+        label.font = UIFont(name: "SFProDisplay-Medium", size: 16)
+            
         return label
     }()
     
-    lazy var darkModeSwitch = {
-        let dMSwitch = UISwitch()
-        
-        dMSwitch.onTintColor = UIColor(red: 0.702, green: 0.463, blue: 0.969, alpha: 1)
-        dMSwitch.thumbTintColor = UIColor(red: 0.9, green: 0.91, blue: 0.92, alpha: 1)
-        dMSwitch.addTarget(self, action: #selector(changeSwitch), for: .touchUpInside)
-        
-        return dMSwitch
+    let darkModeSwitch = {
+    let sw = UISwitch()
+        sw.onTintColor = UIColor(named: "B376F7")
+        sw.addTarget(self, action: #selector(darkMode), for: .valueChanged)
+            
+        return sw
     }()
-    
-    //MARK: - View Controller Lifecycle
-    
-    override func viewDidAppear(_ animated: Bool) {
-        setupUI()
-        localizeLanguage()
-    }
-    
+
+//MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor(named: "FFFFFF-1C2431")
+      //  self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+       // navigationItem.title = "Профиль"
+//        navigationItem.rightBarButtonItem = logoutButton
+       // logoutButton.target = self
         
-        view.backgroundColor = UIColor(named: "FFFFFF - 1C2431")
-        navigationItem.title = "Profile"
+        setupUI()
+        configureViews()
+        loadUserEmail()
+  
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = false
+    }
+  
     
-    //MARK: - Add function
-    func localizeLanguage() {
-        navigationItem.title = "PROFILE_TITLE".localized()
-        userInfoButton.setTitle("USER_INFO_BUTTON".localized(), for: .normal)
-        userInfoLabel.text = "USER_INFO_EDIT_LABEL".localized()
-        passwordEditButton.setTitle("CHANGE_PASSWORD_BUTTON".localized(), for: .normal)
-        darkModeLabel.text = "DARK_MODE_LABEL".localized()
+    
+//MARK: - setupUI
+    func setupUI() {
+        
+        navigationItem.rightBarButtonItem = logoutButton
+        view.addSubview(avatarImage)
+        view.addSubview(profileLabel)
+        view.addSubview(emailLabel)
+        view.addSubview(backgroundView)
+            
+        backgroundView.addSubview(personalButton)
+        backgroundView.addSubview(editLabel)
+        backgroundView.addSubview(chevron1)
+        backgroundView.addSubview(line1)
+        backgroundView.addSubview(changePasswordButton)
+        backgroundView.addSubview(chevron2)
+        backgroundView.addSubview(line2)
+        backgroundView.addSubview(languageButton)
+        backgroundView.addSubview(languageLabel)
+        backgroundView.addSubview(chevron3)
+        backgroundView.addSubview(line3)
+        backgroundView.addSubview(darkModeLabel)
+        backgroundView.addSubview(darkModeSwitch)
+            
+        avatarImage.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(16)
+            make.centerX.equalToSuperview()
+            make.height.width.equalTo(104)
+        }
+        profileLabel.snp.makeConstraints { make in
+            make.top.equalTo(avatarImage.snp.bottom).offset(16)
+            make.centerX.equalToSuperview()
+        }
+        emailLabel.snp.makeConstraints { make in
+            make.top.equalTo(profileLabel.snp.bottom).offset(8)
+            make.centerX.equalToSuperview()
+        }
+        backgroundView.snp.makeConstraints { make in
+            make.top.equalTo(emailLabel.snp.bottom).offset(24)
+            make.bottom.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
+        }
+        personalButton.snp.makeConstraints {make in
+            make.top.equalToSuperview()
+            make.left.equalToSuperview().inset(24)
+            make.right.equalToSuperview().inset(24)
+            make.height.equalTo(56)
+        }
+        editLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(personalButton)
+            make.right.equalTo(personalButton).inset(24)
+        }
+        chevron1.snp.makeConstraints { make in
+            make.centerY.equalTo(personalButton)
+            make.right.equalTo(personalButton)
+        }
+        line1.snp.makeConstraints { make in
+            make.top.equalTo(personalButton.snp.bottom)
+            make.left.equalToSuperview().inset(24)
+            make.right.equalToSuperview().inset(24)
+            make.height.equalTo(1)
+        }
+        changePasswordButton.snp.makeConstraints { make in
+            make.top.equalTo(line1.snp.bottom)
+            make.left.equalToSuperview().inset(24)
+            make.right.equalToSuperview().inset(24)
+            make.height.equalTo(56)
+        }
+        chevron2.snp.makeConstraints { make in
+            make.centerY.equalTo(changePasswordButton)
+            make.right.equalTo(changePasswordButton)
+        }
+        line2.snp.makeConstraints { make in
+            make.top.equalTo(changePasswordButton.snp.bottom)
+            make.left.equalToSuperview().inset(24)
+            make.right.equalToSuperview().inset(24)
+            make.height.equalTo(1)
+        }
+        languageButton.snp.makeConstraints { make in
+            make.top.equalTo(line2.snp.bottom)
+            make.left.equalToSuperview().inset(24)
+            make.right.equalToSuperview().inset(24)
+            make.height.equalTo(56)
+        }
+        languageLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(languageButton)
+            make.right.equalTo(languageButton).inset(24)
+        }
+        chevron3.snp.makeConstraints { make in
+            make.centerY.equalTo(languageButton)
+            make.right.equalTo(languageButton)
+        }
+        line3.snp.makeConstraints { make in
+            make.top.equalTo(languageButton.snp.bottom)
+            make.left.equalToSuperview().inset(24)
+            make.right.equalToSuperview().inset(24)
+            make.height.equalTo(1)
+        }
+        darkModeLabel.snp.makeConstraints { make in
+            make.top.equalTo(line3.snp.bottom)
+            make.left.equalToSuperview().inset(24)
+            make.right.equalToSuperview().inset(24)
+            make.height.equalTo(56)
+        }
+        darkModeSwitch.snp.makeConstraints { make in
+            make.centerY.equalTo(darkModeLabel)
+            make.right.equalTo(darkModeLabel)
+            make.width.equalTo(52)
+            make.height.equalTo(32)
+        }
+    }
+
+//MARK: - configureViews
+        func configureViews() {
+    
+        if UserDefaults.standard.string(forKey: "isDarkMode") == "Dark" {
+            darkModeSwitch.setOn(true, animated: false)
+        } else {
+            darkModeSwitch.setOn(false, animated: false)
+        }
         profileLabel.text = "MY_PROFILE".localized()
-        languageButton.setTitle("LANGUAGE".localized(), for: .normal)
+        languageButton.setTitle("LANGUAGE".localized(), for:.normal)
+        personalButton.setTitle("PERSONAL_DATA".localized(), for: .normal)
+        changePasswordButton.setTitle("CHANGE_PASSWORD".localized(), for: .normal)
+        darkModeLabel.text = "DARK_MODE".localized()
+        editLabel.text = "EDIT".localized()
         
         if Localize.currentLanguage() == "ru" {
             languageLabel.text = "Русский"
@@ -208,189 +317,49 @@ class ProfileViewController: UIViewController, LanguageProtocol {
             languageLabel.text = "English"
         }
     }
-    
-    func languageDidChande() {
-        localizeLanguage()
-    }
-    
-    @objc func languageButtonTapped() {
-        let languageVC = LanguageViewController()
+        @objc func logout() {
+            let logout = LogoutViewController()
+            logout.modalPresentationStyle = .overFullScreen
+            present(logout, animated: true)
+        }
+        @objc func editPersonalData() {
+            let change = UserInfoViewController()
+            navigationController?.show(change, sender: self)
+            tabBarController?.tabBar.isHidden = true
+        }
+        @objc func openChangePassword() {
+            let changePassword = ChangePasswordViewController()
+            navigationController?.show(changePassword, sender: self)
+            tabBarController?.tabBar.isHidden = true
+            
+        }
+        @objc func openLanguageVC() {
+            let languageVC = LanguageViewController()
+            
+            languageVC.modalPresentationStyle = .overFullScreen
+            languageVC.delegate = self
+            present(languageVC, animated: true, completion: nil)
+        }
+//        func languageDidChange() {
+//            configureViews()
+//        }
         
-        languageVC.modalPresentationStyle = .overFullScreen
-        
-        languageVC.delegate = self
-        
-        present(languageVC, animated: true, completion: nil)
-    }
-    
-    @objc func LogOutTapButton() {
-        let logOutVC = LogOutViewController()
-        
-        logOutVC.modalPresentationStyle = .overFullScreen
-        
-        self.present(logOutVC, animated: true, completion: nil)
-    }
-    
-    @objc func userInfoButtonTapped() {
-        let userInfoVc = UserInfoViewController()
-        
-        userInfoVc.modalPresentationStyle = .fullScreen
-        
-        navigationController?.show(userInfoVc, sender: self)
-        navigationItem.title = ""
-    }
-    
-    @objc func changePasswordTapped() {
-        let changePassword = ChangePasswordViewController()
-        
-        navigationController?.show(changePassword, sender: self)
-        navigationItem.title = ""
-    }
-    
-    @objc func changeSwitch(_ dmswitch: UISwitch) {
-        if dmswitch.isOn {
-            if let windowScene = UIApplication.shared.connectedScenes
-                .compactMap({ $0 as? UIWindowScene })
-                .first(where: { $0.activationState == .foregroundActive }) {
-                windowScene.windows.forEach { window in
+        @objc func darkMode(_ sender: UISwitch) {
+            let defaults = UserDefaults.standard
+            if let window = view.window {
+                if darkModeSwitch.isOn {
                     window.overrideUserInterfaceStyle = .dark
-                }
-            }
-        } else {
-            if let windowScene = UIApplication.shared.connectedScenes
-                .compactMap({ $0 as? UIWindowScene })
-                .first(where: { $0.activationState == .foregroundActive }) {
-                windowScene.windows.forEach { window in
+                    defaults.set("Dark", forKey: "isDarkMode")
+                } else {
                     window.overrideUserInterfaceStyle = .light
+                    defaults.set("Light", forKey: "isDarkMode")
                 }
             }
         }
-    }
-    
-    //MARK: - Add Subview & Constraints
-    func setupUI() {
-        view.addSubview(profileImageView)
-        view.addSubview(profileLabel)
-        view.addSubview(subtitleProfileLabel)
-        view.addSubview(backView)
-        backView.addSubview(languageLabel)
-        backView.addSubview(languageButton)
-        backView.addSubview(languageArrowImage)
-        backView.addSubview(languageCellView)
-        backView.addSubview(userInfoLabel)
-        backView.addSubview(userInfoButton)
-        backView.addSubview(userInfoArrowImage)
-        backView.addSubview(userInfoCellView)
-        backView.addSubview(passwordArrowImage)
-        backView.addSubview(passwordEditButton)
-        backView.addSubview(passwordCellView)
-        backView.addSubview(darkModeLabel)
-        backView.addSubview(darkModeSwitch)
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "logOut"), style: .done, target: self, action: #selector(LogOutTapButton))
-        navigationItem.rightBarButtonItem?.tintColor = UIColor(red: 1, green: 0.25, blue: 0.17, alpha: 1)
-        
-        profileImageView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(32)
-            make.centerX.equalToSuperview()
-        }
-        
-        profileLabel.snp.makeConstraints { make in
-            make.top.equalTo(profileImageView.snp.bottom).offset(24)
-            make.centerX.equalToSuperview()
-        }
-        
-        subtitleProfileLabel.snp.makeConstraints { make in
-            make.top.equalTo(profileLabel.snp.bottom).offset(8)
-            make.centerX.equalToSuperview()
-        }
-        
-        backView.snp.makeConstraints { make in
-            make.top.equalTo(subtitleProfileLabel.snp.bottom).offset(24)
-            make.bottom.right.left.equalTo(view.safeAreaLayoutGuide)
-        }
-        
-        languageButton.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.bottom.equalTo(languageCellView.snp.top).offset(1)
-            make.left.right.equalToSuperview().inset(24)
-            make.height.equalTo(64)
-        }
-        
-        languageArrowImage.snp.makeConstraints { make in
-            make.right.equalToSuperview().inset(24)
-            make.height.equalTo(16)
-            make.width.equalTo(16)
-            make.left.equalTo(languageLabel.snp.right).offset(8)
-            make.centerY.equalTo(languageButton)
-        }
-        
-        languageLabel.snp.makeConstraints { make in
-            make.centerY.equalTo(languageButton)
-        }
-        
-        languageCellView.snp.makeConstraints { make in
-            make.right.equalToSuperview().inset(24)
-            make.left.equalToSuperview().inset(24)
-            make.height.equalTo(1)
-        }
-        
-        userInfoButton.snp.makeConstraints { make in
-            make.top.equalTo(languageCellView.snp.bottom).inset(1)
-            make.left.equalToSuperview().inset(24)
-            make.right.equalToSuperview().inset(24)
-            make.height.equalTo(64)
-        }
-        
-        userInfoArrowImage.snp.makeConstraints { make in
-            make.right.equalToSuperview().inset(24)
-            make.height.equalTo(16)
-            make.width.equalTo(16)
-            make.left.equalTo(userInfoLabel.snp.right).offset(8)
-            make.centerY.equalTo(userInfoButton)
-        }
-        
-        userInfoLabel.snp.makeConstraints { make in
-            make.centerY.equalTo(userInfoButton)
-        }
-        
-        userInfoCellView.snp.makeConstraints { make in
-            make.right.equalToSuperview().inset(24)
-            make.left.equalToSuperview().inset(24)
-            make.height.equalTo(1)
-            make.top.equalTo(userInfoButton.snp.bottom).inset(1)
-        }
-        
-        passwordEditButton.snp.makeConstraints { make in
-            make.top.equalTo(userInfoCellView.snp.bottom).offset(1)
-            make.left.equalToSuperview().inset(24)
-            make.right.equalToSuperview().inset(24)
-            make.height.equalTo(64)
-        }
-        
-        passwordArrowImage.snp.makeConstraints { make in
-            make.right.equalToSuperview().inset(24)
-            make.height.equalTo(16)
-            make.width.equalTo(16)
-            make.centerY.equalTo(passwordEditButton)
-        }
-        
-        passwordCellView.snp.makeConstraints { make in
-            make.right.equalToSuperview().inset(24)
-            make.left.equalToSuperview().inset(24)
-            make.height.equalTo(1)
-            make.top.equalTo(passwordEditButton.snp.bottom).inset(1)
-        }
-        
-        darkModeLabel.snp.makeConstraints { make in
-            make.top.equalTo(passwordCellView.snp.bottom).offset(25)
-            make.left.equalToSuperview().inset(24)
-            make.centerX.equalTo(darkModeSwitch)
-        }
-        
-        darkModeSwitch.snp.makeConstraints { make in
-            make.top.equalTo(passwordCellView.snp.bottom).offset(20)
-            make.right.equalToSuperview().inset(24)
+    func loadUserEmail() {
+        if let userEmail = UserDefaults.standard.string(forKey: "userEmail") {
+            emailLabel.text = userEmail
         }
     }
-}
+    }
+

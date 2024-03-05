@@ -14,10 +14,12 @@ import SwiftyJSON
 
 class MovieInfoViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    //MARK: - Variables
     var movie = Movie()
     var similarMovies:[Movie] = []
     var mainMovie = MainMovies()
     
+    //MARK: - Add UI Elements
     let scroll = {
         let scrollView = UIScrollView()
         scrollView.bounces = false
@@ -256,7 +258,7 @@ class MovieInfoViewController: UIViewController, UICollectionViewDelegate, UICol
         return gradient
     }()
     
-    
+    //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -290,6 +292,7 @@ func decriptionNumber() {
     }
 }
     
+    //MARK: - setupUI
     func setupUI() {
         view.backgroundColor = .orange
         view.addSubview(scroll)
@@ -484,6 +487,8 @@ func decriptionNumber() {
         }
         
     }
+    
+    //MARK: - addToFavorite
     @objc func addToFavorite() {
         var method = HTTPMethod.post
         if movie.favorite {
@@ -555,6 +560,7 @@ func decriptionNumber() {
 //        }
     }
     
+    //MARK: - setData
         func setData() {
             imageView.sd_setImage(with: URL(string: movie.poster_link), completed: nil)
             
@@ -565,13 +571,11 @@ func decriptionNumber() {
                 detailLabel.text = detailLabel.text! + " • " + item.name
             }
             descriptionLabel.text = movie.description
-            
             directorNameLabel.text = movie.director
-            
             producerNameLabel.text = movie.producer
         }
     
- 
+    //MARK: - downloadSimilar
     func downloadSimilar() {
         SVProgressHUD.show()
         
@@ -612,7 +616,7 @@ func decriptionNumber() {
         }
     }
     
-    
+    //MARK: - collectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.similarCollectionView {
             return similarMovies.count
@@ -628,11 +632,6 @@ func decriptionNumber() {
             similarCell.imageView.sd_setImage(with: URL(string: similarMovies[indexPath.row].poster_link))
             similarCell.titleLabel.text = similarMovies[indexPath.row].name
             
-//            if let genrename = similarMovies[indexPath.row].genres.first {
-//                similarCell.genreTitleLabel.text = genrename.name
-//            } else {
-//                similarCell.genreTitleLabel.text = ""
-//            }
             return similarCell
         }
         

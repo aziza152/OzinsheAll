@@ -63,7 +63,8 @@ class MovieTableViewCell: UITableViewCell {
         view.backgroundColor = UIColor(red: 0.82, green: 0.84, blue: 0.86, alpha: 1)
         return view
     }()
-    
+
+// MARK: - Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 

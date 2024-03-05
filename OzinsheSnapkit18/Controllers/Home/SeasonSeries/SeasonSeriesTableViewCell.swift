@@ -9,6 +9,7 @@ import UIKit
 
 class SeasonSeriesTableViewCell: UITableViewCell {
 
+    //MARK: - Add UI Elements
     let seriesLabel = {
         let label = UILabel()
         label.font = UIFont(name: "SFProDisplay-Bold", size: 14)
@@ -32,6 +33,7 @@ class SeasonSeriesTableViewCell: UITableViewCell {
         return view
     }()
     
+    //MARK: - Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -42,6 +44,7 @@ class SeasonSeriesTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - setupUI
     func setupUI() {
         contentView.backgroundColor = UIColor(named: "FFFFFF - 111827")
         

@@ -12,13 +12,15 @@ import SwiftyJSON
 
 class SearchViewController: UIViewController {
 
+    //MARK: - Variables
     var isLoading: Bool = false
     var categories: [Category] = []
     var movies: [Movie] = []
     
-        let searchTextField = {
-        let textField = TextFieldWithPadding()
-        
+    //MARK: - Add UI Elements
+    let searchTextField = {
+    let textField = TextFieldWithPadding()
+    
         textField.padding = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         textField.placeholder = "Іздеу"
         textField.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
@@ -30,8 +32,8 @@ class SearchViewController: UIViewController {
         return textField
     }()
     
-    lazy var exitButton = {
-        let button = UIButton()
+    let exitButton = {
+    let button = UIButton()
         
         button.setImage(UIImage(named: "exitButton"), for: .normal)
         button.contentMode = .scaleToFill
@@ -40,8 +42,8 @@ class SearchViewController: UIViewController {
         return button
     }()
     
-    lazy var searchButton = {
-        let button = UIButton()
+    let searchButton = {
+    let button = UIButton()
         
         button.setImage(UIImage(named: "searchVC"), for: .normal)
         button.contentMode = .scaleToFill
@@ -50,8 +52,8 @@ class SearchViewController: UIViewController {
         return button
     }()
     
-        let titleLabel = {
-        let label = UILabel()
+    let titleLabel = {
+    let label = UILabel()
         label.text = "Санаттар"
         label.font = UIFont(name: "SFProDisplay-Bold", size: 24)
         label.textColor = UIColor(named: "111827 - FFFFFF")
@@ -87,6 +89,7 @@ class SearchViewController: UIViewController {
         return tv
     }()
     
+    //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -96,7 +99,7 @@ class SearchViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        addViews()
+        setupUI()
         
         exitButton.isHidden = true
         hideKeyboardWhenTappedAround()
@@ -122,6 +125,7 @@ class SearchViewController: UIViewController {
         downloadSearchMovies()
     }
     
+    //MARK: - downloadCategories
     func downloadCategories() {
                SVProgressHUD.show()
         
@@ -161,7 +165,8 @@ class SearchViewController: UIViewController {
         }
     }
     
-    func addViews() {
+    //MARK: - setupUI
+    func setupUI() {
         view.backgroundColor = UIColor(named: "FFFFFF - 111827")
         
         view.addSubview(searchButton)
@@ -170,7 +175,6 @@ class SearchViewController: UIViewController {
         view.addSubview(titleLabel)
         view.addSubview(collectionView)
         view.addSubview(tableView)
-        
         
         searchTextField.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(24)
@@ -181,7 +185,6 @@ class SearchViewController: UIViewController {
         }
         
         exitButton.snp.makeConstraints { make in
-            
             make.height.equalTo(52)
             make.width.equalTo(52)
             make.right.equalTo(searchTextField.snp.right).offset(0)
@@ -213,6 +216,7 @@ class SearchViewController: UIViewController {
         }
     }
     
+    //MARK: - downloadSearchMovies
     func downloadSearchMovies() {
         if searchTextField.text!.isEmpty {
             titleLabel.text = "Cанаттар"
@@ -276,6 +280,7 @@ class SearchViewController: UIViewController {
     }
 }
 
+//MARK: - UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDelegate, UITableViewDataSource extension
 
 extension SearchViewController: UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDelegate, UITableViewDataSource {
     
@@ -307,7 +312,7 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         navigationController?.show(movieinfoVC, sender: self)
     }
     
-    //MARK: - Collection view data source
+    //MARK: - Collection view
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return categories.count
     }
@@ -335,7 +340,7 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
     }
 }
 
-//MARK: - UITextFieldDelegate extension
+//MARK: - UITextFieldDelegate
 extension SearchViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == searchTextField {

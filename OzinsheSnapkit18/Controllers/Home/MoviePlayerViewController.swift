@@ -10,8 +10,8 @@ import YouTubePlayer
 
 class MoviePlayerViewController: UIViewController {
 
+    //MARK: - Variables
     var movie = Movie()
-    
     var video_link = ""
     
     let player = {
@@ -20,6 +20,7 @@ class MoviePlayerViewController: UIViewController {
         return view
     }()
     
+    //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "FFFFFF - 111827")

@@ -9,7 +9,8 @@ import UIKit
 import SnapKit
 
 class MainCollectionViewCell: UICollectionViewCell {
-    
+   
+    //MARK: - Add UI Elements
     let imageView = {
         let image = UIImageView()
         image.layer.cornerRadius = 12
@@ -22,8 +23,6 @@ class MainCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont(name: "SFProDisplay-Semibold", size: 12)
         label.textColor = UIColor(red: 0.07, green: 0.09, blue: 0.15, alpha: 1)
-       // label.textAlignment = .left
-       // label.numberOfLines = 4
         
         return label
     }()
@@ -35,6 +34,7 @@ class MainCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    //MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -47,6 +47,7 @@ class MainCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - setupUI
     func setupUI() {
         addSubview(imageView)
         addSubview(titleLabel)
@@ -68,6 +69,8 @@ class MainCollectionViewCell: UICollectionViewCell {
         }
         
     }
+    
+    //MARK: - setData
     func setData(mainMovie: Movie) {
         titleLabel.text = mainMovie.name
         lastPartLabel.text = mainMovie.genres.first?.name ?? ""

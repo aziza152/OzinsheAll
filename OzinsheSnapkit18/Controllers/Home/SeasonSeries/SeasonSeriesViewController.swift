@@ -12,6 +12,7 @@ import SwiftyJSON
 
 class SeasonSeriesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate {
     
+    //MARK: - Variables
     var movie = Movie()
     var seasons: [Season] = []
     var currentSeason = 0
@@ -44,6 +45,7 @@ class SeasonSeriesViewController: UIViewController, UICollectionViewDataSource, 
         return tableView
     }()
 
+    //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -59,6 +61,8 @@ class SeasonSeriesViewController: UIViewController, UICollectionViewDataSource, 
         
         downloadSeasons()
     }
+    
+    //MARK: - downloadSeasons
     func downloadSeasons() {
         SVProgressHUD.show()
         
@@ -87,6 +91,8 @@ class SeasonSeriesViewController: UIViewController, UICollectionViewDataSource, 
             }
         }
     }
+    
+    //MARK: - setupUI
     func setupUI() {
         view.backgroundColor = UIColor(named: "FFFFFF - 111827")
         
@@ -103,6 +109,8 @@ class SeasonSeriesViewController: UIViewController, UICollectionViewDataSource, 
             make.top.equalTo(seriesCollectionView.snp.bottom)
         }
     }
+    
+    //MARK: - collectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return seasons.count
     }
@@ -128,6 +136,7 @@ class SeasonSeriesViewController: UIViewController, UICollectionViewDataSource, 
         seriesCollectionView.reloadData()
     }
     
+    //MARK: - tableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if seasons.isEmpty {
             return 0

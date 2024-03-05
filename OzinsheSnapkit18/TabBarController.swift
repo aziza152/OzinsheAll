@@ -41,5 +41,10 @@ class TabBarController: UITabBarController {
         let navigationProfileVc = UINavigationController(rootViewController: profileVC)
             
        setViewControllers([navigationHomeVc, navigationSearchVc, navigationFavoriteVc, navigationProfileVc], animated: true)
+        
+        homeVC.navigationItem.title = ""
+        searchVC.navigationItem.title = "SEARCH".localized()
+        favoriteVC.navigationItem.title = "LIST".localized()
+        profileVC.navigationItem.title = "PROFILE".localized()
     }
 }

@@ -5,51 +5,96 @@
   Created by Aziza on 14.02.2024.
   
 */
+/*
+  Localizable.strings
+  Ozin3
+
+  Created by Самал Буранбаева on 25.01.2024.
+  
+*/
+"PROFILE" = "Profile";
+"SEARCH" = "Search";
+"LIST" = "List";
 
 "MY_PROFILE" = "My profile";
+"PERSONAL_DATA" = "Personal data";
+"EDIT" = "Edit";
+"CHANGE_PASSWORD" = "Change password";
 "LANGUAGE" = "Language";
-"USER_INFO_NAME_LABEL" = "Your name";
-"USER_INFO_NAME_TEXT_FIELD" = "Enter your name";
-"US_INFO_PHONE_LABEL" = "Phone number";
-"US_INFO_BIRTH_LABEL" = "Date of birth";
-"US_INFO_SAVE_BUTTON" = "Save changes";
-"USER_INFO_BUTTON" = "Personal Information";
-"USER_INFO_EDIT_LABEL" = "Edit";
-"CHANGE_PASSWORD_BUTTON" = "Change password";
-"DARK_MODE_LABEL" = "Dark mode";
-"PROFILE_TITLE" = "Profile";
-"USER_INFO_NAVIGATION" = "Personal Information";
-"USER_PASSWORD_CHANGE" = "Your password";
-"CHANGE_PASSWORD_LABEL" = "Password";
-"REPEAT_PASSWORD_LABEL" = "Repeat password";
-"CHANGE_PASSWORD_NAVIGATION" = "Change password";
-"LOG_OUT_LABEL" = "Exit";
-"LOG_OUT_QUES_LABEL" = "Do you really want to get out?";
-"LOG_OUT_BUTTON" = "Yes, get out";
-"NO_LOG_OUT_BUTTON" = "No";
-"CONTINUE_WATCH_LABEL" = "Continue watching";
-"TOTAL_VIDEO_LABEL" = "Total video";
-"CHOOSE_GENRE_LABEL" = "Choose genre";
-"SHARE_LABEL" = "Share";
-"ADD_TO_FAVORITE" = "Add to favorite";
-"FULL_DESCRIPTION_BUTTON" = "Full description";
-"DIRECTOR_LABEL" = "Director";
-"PRODUCER_LABEL" = "Producer";
-"SERIES_LABEL" = "Series";
-"SCREENSHOT_LABEL" = "Screenshots";
-"SIMILAR_MOVIES_LABEL" = "Similar movies";
-"SEARCH_NAVIGATION" = "Search";
-"CATEGORIES_SEARCH" = "Categories";
-"SEARCH_PLACEHOLDER" = "Search";
-"FAVORITE_NAVIGATION" = "List";
-"SIGN_UP_LABEL" = "Sign up";
-"DETAIL_INFORM_LABEL" = "Add data";
-"SIGN_UP_EMAIL" = "Your Email";
-"CHANGE_PASSWORD_LABEL" = "Password";
-"REPEAT_PASSWORD_LABEL" = "Repeat ypur password";
-"SIGN_UP_QUESTION_LABEL" = "Do you have account?";
-"SIGN_UP_BUTTON" = "Sign up";
-"SIGN_IN_BUTTON_UP" = "Sign in";
-"HELLO_LABEL" = "Hello";
-"DETAIL_SIGN_IN" = "Sign in to your account";
-"SIGN_IN_QUESTION" = "Don't you have an account?";
+"NOTIFICATIONS" = "Notifications";
+"DARK_MODE" = "Dark mode";
+
+"YOUR_NAME" = "Your name";
+"TELEPHONE" = "Telephone";
+"DATE_OF_BIRTH" = "Date of birth";
+"SAVE_CHANGES" = "Save changes";
+
+"PASSWORD" = "Password";
+"REPEAT_PASSWORD" = "Repeat the password";
+"PASS_CHANGED" = "The password has been successfully changed";
+
+"EXIT" = "Exit";
+"CONFIRM_EXIT_FROM_ACCOUNT" = "Are you really want to log out from the account?";
+"YES_EXIT" = "Yes, exit";
+"NO" = "No";
+
+"PLAY" = "Play";
+
+"CATEGORIES" = "Categories";
+"SEARCH_RESULTS" = "Search results";
+
+"CONTINUE_PLAY" = "Continue to watch";
+
+"HELLO" = "Hello";
+"SIGN_IN" = "Sign in";
+"YOUR_EMAIL" = "Your email";
+"PASSWORD" = "Password";
+"YOUR_PASSWORD" = "Your password";
+"FORGOT_YOUR_PASSWORD" = "Forgot your password?";
+"LOGIN" = "Sign in";
+"NO_ACCOUNT" = "No account? ";
+"SIGN_UP" = "Sign up";
+"OR" = "Or";
+"SIGNUP_APPLE" = "Sign up with an Apple ID";
+"SIGNUP_GOOGLE" = "Sign up with Google";
+
+"FILL_IN_DATA" = "Fill in the data";
+"All_FIELDS_MUST_BE_FILLED_IN" = "All fields must be filled in!";
+"PASS_NOT_MATCH" = "Passwords must match!";
+"EMAIL_IN_USE" = "A user with such an email is registered";
+
+"WRONG_FORMAT" = "Wrong format";
+
+"CONNECTION_ERROR" = "Connection error";
+
+"SKIP" = "Skip";
+"NEXT" = "Next";
+"WELCOME" = "Welcome to ÖZINŞE!";
+
+"AGE_CATEGORY" = "According to the age";
+"CHOOSE_GENRE" = "Choose a genre";
+"ALL" = "All";
+
+"ADD_FAVORITE" = "Add to favorites";
+"SHARE" = "Share";
+"DETAILS" = "Details";
+"HIDE" = "Hide";
+"DIRECTOR" = "Director:";
+"PRODUCER" = "Producer:";
+"SECTIONS" = "Sections";
+"SCREENSHOTS" = "Screenshots";
+"SIMILAR_SERIES" = "Similar series";
+
+"SEASON" = " season";
+"SEASON_IN_SERIES" = "season";
+"SERIES" = "episode";
+"EPISODE" = "episode";
+
+"HELLO" = "Hello";
+"SIGN_IN" = "Sign in";
+"GOT_ACCOUNT" = "Do you have an account? ";
+
+"WRONG_EMAIL" = "Incorrect email format";
+"WRONG_EMAIL_TEXT" = "Please check again";
+"OOPS" = "Sorry";
+"NOT_AVAILABLE" = "Service is currently under development";

@@ -15,52 +15,41 @@ protocol LanguageProtocol {
 
 class LanguageViewController: UIViewController, UIGestureRecognizerDelegate {
     
-    var viewTranslation = CGPoint(x: 0, y: 0)
-    
+  //  var viewTranslation = CGPoint(x: 0, y: 0)
     var delegate : LanguageProtocol?
-    
     let languageArray = [["English", "en"], ["Қазақша", "kk"], ["Русский", "ru"]]
     
-    let backView = {
+    let backgroundView = {
         let view = UIView()
         view.backgroundColor = UIColor(named: "FFFFFF - 111827")
         view.layer.cornerRadius = 32
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        
-        let homeView = UIView()
-        homeView.backgroundColor = UIColor(red: 0.82, green: 0.835, blue: 0.859, alpha: 1)
-        homeView.layer.cornerRadius = 3
-        
-        let languageLabel = UILabel()
-        languageLabel.text = "Тіл"
-        languageLabel.font = UIFont(name: "SFProDisplay-Bold", size: 24)
-        languageLabel.textColor = UIColor(named: "111827 - FFFFFF")
-        
-        view.addSubview(homeView)
-        view.addSubview(languageLabel)
-        
-        homeView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(21)
-            make.size.equalTo(CGSize(width: 64, height: 5))
-            make.centerX.equalToSuperview()
-        }
-        
-        languageLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(58)
-            make.left.equalToSuperview().inset(24)
-        }
-        return view
+       
+    return view
     }()
-    
-    let langTableView = {
-        let tableView = UITableView()
-        tableView.separatorStyle = .none
-        tableView.allowsSelection = true
-        tableView.showsVerticalScrollIndicator = false
-        tableView.showsHorizontalScrollIndicator = false
-        tableView.register(LanguageTableViewCell.self, forCellReuseIdentifier: "LanguageCell")
         
-        return tableView
+    let lineView = {
+        let view = UIView()
+            view.backgroundColor = UIColor(named: "D1D5DB-6B7280")
+            view.layer.cornerRadius = 2.5
+            
+    return view
+    }()
+        
+    let titleLabel = {
+        let label = UILabel()
+            label.font = UIFont(name: "SFProDisplay-Bold", size: 24)
+            label.textColor = UIColor(named: "111827-FFFFFF")
+            
+        return label
+    }()
+        
+    let tableView = {
+        let table = UITableView()
+            table.register(LanguageTableViewCell.self, forCellReuseIdentifier: "LanguageCell")
+            table.backgroundColor = .clear
+            
+        return table
     }()
     
     //MARK: - Licecycle
@@ -70,24 +59,37 @@ class LanguageViewController: UIViewController, UIGestureRecognizerDelegate {
         setupUI()
         tapGest()
     
-        langTableView.delegate = self
-        langTableView.dataSource = self
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
     //MARK: - Add Subviews & Constraints
     func setupUI() {
         view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+        view.addSubview(backgroundView)
         
-        view.addSubview(backView)
-        backView.addSubview(langTableView)
+        titleLabel.text = "LANGUAGE".localized()
+      
+        backgroundView.addSubview(lineView)
+        backgroundView.addSubview(titleLabel)
+        backgroundView.addSubview(tableView)
         
-        backView.snp.makeConstraints { make in
+        backgroundView.snp.makeConstraints { make in
             make.bottom.equalToSuperview()
             make.left.right.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(303)
         }
-        
-        langTableView.snp.makeConstraints { make in
+        lineView.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(21)
+            make.centerX.equalTo(backgroundView)
+            make.height.equalTo(5)
+            make.width.equalTo(64)
+        }
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(58)
+            make.left.equalToSuperview().inset(24)
+        }
+        tableView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(98)
             make.right.left.equalTo(view.safeAreaLayoutGuide)
             make.bottom.equalToSuperview()
@@ -100,35 +102,35 @@ class LanguageViewController: UIViewController, UIGestureRecognizerDelegate {
         tap.delegate = self
         view.addGestureRecognizer(tap)
         
-        view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleDismiss)))
+      //  view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleDismiss)))
     }
     
     @objc func dismissView() {
         self.dismiss(animated: true, completion: nil)
     }
-    
-    @objc func handleDismiss(sender: UIPanGestureRecognizer) {
-        switch sender.state {
-        case .changed:
-            viewTranslation = sender.translation(in: view)
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-                self.backView.transform = CGAffineTransform(translationX: 0, y: self.viewTranslation.y)
-            })
-        case .ended:
-            if viewTranslation.y < 100 {
-                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-                    self.backView.transform = .identity
-                })
-            } else {
-                dismiss(animated: true, completion: nil)
-            }
-        default:
-            break
-        }
-    }
+//
+//    @objc func handleDismiss(sender: UIPanGestureRecognizer) {
+//        switch sender.state {
+//        case .changed:
+//            viewTranslation = sender.translation(in: view)
+//            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+//                self.backgroundView.transform = CGAffineTransform(translationX: 0, y: self.viewTranslation.y)
+//            })
+//        case .ended:
+//            if viewTranslation.y < 100 {
+//                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+//                    self.backgroundView.transform = .identity
+//                })
+//            } else {
+//                dismiss(animated: true, completion: nil)
+//            }
+//        default:
+//            break
+//        }
+//    }
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        if (touch.view?.isDescendant(of: backView))! {
+        if (touch.view?.isDescendant(of: backgroundView))! {
             return false
         }
         
@@ -148,7 +150,7 @@ extension LanguageViewController: UITableViewDelegate, UITableViewDataSource {
         cell.languageLabel.text = languageArray[indexPath.row][0]
         
         if Localize.currentLanguage() == languageArray[indexPath.row][1] {
-            cell.checkImage.image = UIImage(named: "check")
+            cell.checkImage.image = UIImage(named: "Check")
         } else {
             cell.checkImage.image = nil
         }

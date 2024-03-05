@@ -10,6 +10,7 @@ import SnapKit
 
 class GenreAgeCollectionViewCell: UICollectionViewCell {
     
+    //MARK: - Add UI Elements
     let imageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
@@ -28,6 +29,7 @@ class GenreAgeCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    //MARK: - Initialization
     override init(frame: CGRect) {
         super .init(frame: frame)
         backgroundColor = UIColor(named: "FFFFFF - 111827")
@@ -38,6 +40,7 @@ class GenreAgeCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - setupUI
     func setupUI() {
         addSubview(imageView)
         addSubview(titleLabel)
@@ -52,11 +55,5 @@ class GenreAgeCollectionViewCell: UICollectionViewCell {
         }
     }
     func setData(movie: Movie) {
-//        imageView.sd_setImage(with: URL(string: movie.poster_link))
-//        if !movie.categoryAges.isEmpty {
-//            titleLabel.text = "Жасына сәйкес"
-//        } else {
-//            titleLabel.text = "Жанрды таңдаңыз"
-//        }
     }
 }

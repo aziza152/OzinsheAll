@@ -7,8 +7,9 @@
 
 import UIKit
 
-class HistoryCell: UICollectionViewCell {
+class HistoryCollectionViewCell : UICollectionViewCell {
  
+    //MARK: - Add UI Elements
     let imageView = {
         let image = UIImageView()
        image.clipsToBounds = true
@@ -33,6 +34,8 @@ class HistoryCell: UICollectionViewCell {
         
         return label
     }()
+    
+    //MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -44,6 +47,8 @@ class HistoryCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    //MARK: - setData
     func setData(movie: Movie) {
 
        titleLabel.text = movie.name
@@ -51,6 +56,7 @@ class HistoryCell: UICollectionViewCell {
         imageView.sd_setImage(with: URL(string: movie.poster_link))
     }
     
+    //MARK: - setupUI
     func setupUI() {
         addSubview(imageView)
         addSubview(titleLabel)

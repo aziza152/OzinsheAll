@@ -16,7 +16,7 @@ class UserInfoViewController: UIViewController {
     
     let yourNameLabel = {
         let label = UILabel()
-        label.text = "Сіздің атыңыз"
+        label.text = "Сіздің атыңыз".localized()
         label.textColor = UIColor(red: 0.612, green: 0.639, blue: 0.686, alpha: 1)
         label.font = UIFont(name: "SFProDisplay-Bold", size: 14)
         
@@ -27,7 +27,7 @@ class UserInfoViewController: UIViewController {
         let textField = UITextField()
         textField.placeholder = "Атыңынызды енгізіңіз..."
         textField.textColor = UIColor(named: "111827 - FFFFFF")
-        textField.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
+        textField.font = UIFont(name: "SFProDisplay-Medium", size: 16)
         
         return textField
     }()
@@ -52,7 +52,7 @@ class UserInfoViewController: UIViewController {
         let textField = UITextField()
         textField.placeholder = "ali@gmail.com"
         textField.textColor = UIColor(named: "111827 - FFFFFF")
-        textField.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
+        textField.font = UIFont(name: "SFProDisplay-Medium", size: 16)
         
         return textField
     }()
@@ -66,7 +66,7 @@ class UserInfoViewController: UIViewController {
     
     let phoneLabel = {
         let label = UILabel()
-        label.text = "Телефон"
+        label.text = "Телефон".localized()
         label.textColor = UIColor(red: 0.612, green: 0.639, blue: 0.686, alpha: 1)
         label.font = UIFont(name: "SFProDisplay-Bold", size: 14)
         
@@ -77,7 +77,7 @@ class UserInfoViewController: UIViewController {
         let textField = UITextField()
         textField.placeholder = "+7 702 732-10-31"
         textField.textColor = UIColor(named: "111827 - FFFFFF")
-        textField.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
+        textField.font = UIFont(name: "SFProDisplay-Medium", size: 16)
         
         return textField
     }()
@@ -91,7 +91,7 @@ class UserInfoViewController: UIViewController {
     
     let birthLabel = {
         let label = UILabel()
-        label.text = "Туылған күні"
+        label.text = "Туылған күні".localized()
         label.textColor = UIColor(red: 0.612, green: 0.639, blue: 0.686, alpha: 1)
         label.font = UIFont(name: "SFProDisplay-Bold", size: 14)
         
@@ -102,7 +102,7 @@ class UserInfoViewController: UIViewController {
         let textField = UITextField()
         textField.placeholder = "2005-01-28"
         textField.textColor = UIColor(named: "111827 - FFFFFF")
-        textField.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
+        textField.font = UIFont(name: "SFProDisplay-Medium", size: 16)
         
         return textField
     }()
@@ -128,20 +128,20 @@ class UserInfoViewController: UIViewController {
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+       
         setupUI()
         downloadPersonalInfo()
-        localizeLanguage()
+      localizeLanguage()
     }
     
     //MARK: - Add functions
     func localizeLanguage() {
-        navigationItem.title = "USER_INFO_NAVIGATION".localized()
-        yourNameLabel.text = "USER_INFO_NAME_LABEL".localized()
+        navigationItem.title = "PERSONAL_DATA".localized()
+        yourNameLabel.text = "YOUR_NAME".localized()
         nameTextField.placeholder = "USER_INFO_NAME_TEXT_FIELD".localized()
-        phoneLabel.text = "US_INFO_PHONE_LABEL".localized()
-        birthLabel.text = "US_INFO_BIRTH_LABEL".localized()
-        saveChangesButton.setTitle("US_INFO_SAVE_BUTTON".localized(), for: .normal)
+        phoneLabel.text = "TELEPHONE".localized()
+        birthLabel.text = "DATE_OF_BIRTH".localized()
+        saveChangesButton.setTitle("SAVE_CHANGES".localized(), for: .normal)
     }
     
     func hideKeyboardWhenTappedAround() {
@@ -235,7 +235,7 @@ class UserInfoViewController: UIViewController {
     //MARK: - Add subviews & constraints
     func setupUI() {
         view.backgroundColor = UIColor(named: "FFFFFF - 111827")
-        navigationItem.title = "Персональная информация"
+        navigationItem.title = "Жеке деректер".localized()
         
         view.addSubview(yourNameLabel)
         view.addSubview(nameTextField)

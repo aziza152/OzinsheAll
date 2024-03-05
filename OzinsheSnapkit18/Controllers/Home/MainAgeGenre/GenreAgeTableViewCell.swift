@@ -9,10 +9,12 @@ import UIKit
 
 class GenreAgeTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate {
     
+    //MARK: - Variables
     var mainMovie = MainMovies()
     var delegate: MovieProtocol?
     var movies: [Movie] = []
     
+    //MARK: - Add UI Elements
     let titleLabel = {
         let label = UILabel()
         label.font = UIFont(name: "SFProDisplay-Bold", size: 16)
@@ -26,7 +28,7 @@ class GenreAgeTableViewCell: UITableViewCell, UICollectionViewDataSource, UIColl
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 16
         layout.minimumInteritemSpacing = 16
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 24, bottom: 10, right: 24)
         layout.itemSize = CGSize(width: 184, height: 112)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -37,6 +39,7 @@ class GenreAgeTableViewCell: UITableViewCell, UICollectionViewDataSource, UIColl
         return collectionView
     }()
     
+// MARK: - Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -48,6 +51,8 @@ class GenreAgeTableViewCell: UITableViewCell, UICollectionViewDataSource, UIColl
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+// MARK: - setData
     func setData(movie: MainMovies) {
         self.mainMovie = movie
         titleLabel.text = mainMovie.categoryName
@@ -58,14 +63,15 @@ class GenreAgeTableViewCell: UITableViewCell, UICollectionViewDataSource, UIColl
             titleLabel.text = "Жанрды таңдаңыз"
         }
     }
-    
+
+// MARK: - setupUI
     func setupUI() {
         contentView.backgroundColor = UIColor(named: "FFFFFF - 111827")
         contentView.addSubview(titleLabel)
         contentView.addSubview(genreAgeCollectionView)
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(22)
+            make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview().inset(24)
         }
         genreAgeCollectionView.snp.makeConstraints { make in
@@ -75,7 +81,6 @@ class GenreAgeTableViewCell: UITableViewCell, UICollectionViewDataSource, UIColl
         }
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if mainMovie.cellType == .ageCategory {
         return mainMovie.categoryAges.count
@@ -83,6 +88,7 @@ class GenreAgeTableViewCell: UITableViewCell, UICollectionViewDataSource, UIColl
     return mainMovie.genres.count
 }
     
+    //MARK: - collectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GenreAgeCell", for: indexPath) as! GenreAgeCollectionViewCell
         
@@ -99,6 +105,6 @@ class GenreAgeTableViewCell: UITableViewCell, UICollectionViewDataSource, UIColl
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-       // delegate?.movieDidSelect(movie: mainMovie.movies[indexPath.row])
+        delegate?.movieDidSelect(movie: mainMovie.movies[indexPath.row])
     }
 }

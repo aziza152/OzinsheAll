@@ -9,12 +9,10 @@ import UIKit
 
 class LanguageTableViewCell: UITableViewCell {
 
-    let identifier = "LanguageCell"
-  
+  //MARK: - Add UI Elements
     let languageLabel = {
         let label = UILabel()
-        label.text = "Қазақша"
-        label.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
+        label.font = UIFont(name: "SFProDisplay-SemiBold", size: 16)
         label.textColor = UIColor(named: "111827 - FFFFFF")
         
         return label
@@ -34,6 +32,7 @@ class LanguageTableViewCell: UITableViewCell {
         return view
     }()
     
+    //MARK: - Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -44,6 +43,7 @@ class LanguageTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - setupUI
     func setupUI() {
         contentView.backgroundColor = UIColor(named: "FFFFFF - 111827")
         

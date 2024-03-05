@@ -78,7 +78,6 @@ class SignInViewController: UIViewController {
         textField.layer.borderWidth = 1
         textField.layer.cornerRadius = 12
         
-        
         return textField
     }()
     
@@ -212,6 +211,7 @@ class SignInViewController: UIViewController {
                 if let token = json["accessToken"].string {
                     Storage.sharedInstance.accessToken = token
                     UserDefaults.standard.set(token, forKey: "accessToken")
+                    UserDefaults.standard.set(email, forKey: "userEmail")
                     self.startApp()
                 }
             } else {

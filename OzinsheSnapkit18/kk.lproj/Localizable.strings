@@ -6,47 +6,90 @@
   
 */
 
+"PROFILE" = "Профиль";
+"SEARCH" = "Іздеу";
+"LIST" = "Тізім";
+
 "MY_PROFILE" = "Менің профилім";
+"PERSONAL_DATA" = "Жеке деректер";
+"EDIT" = "Өңдеу";
+"CHANGE_PASSWORD" = "Құпия сөзді өзгерту";
 "LANGUAGE" = "Тіл";
-"USER_INFO_NAME_LABEL" = "Сіздің атыңыз";
-"USER_INFO_NAME_TEXT_FIELD" = "Атыңызды еңгізіңіз";
-"US_INFO_PHONE_LABEL" = "Телефон";
-"US_INFO_BIRTH_LABEL" = "Туылған күніңіз";
-"US_INFO_SAVE_BUTTON" = "Өзгерістерді сақтау";
-"USER_INFO_BUTTON" = "Жеке деректер";
-"USER_INFO_EDIT_LABEL" = "Өңдеу";
-"CHANGE_PASSWORD_BUTTON" = "Құпия сөзді өзгерту";
-"DARK_MODE_LABEL" = "Қараңғы режим";
-"PROFILE_TITLE" = "Профиль";
-"USER_INFO_NAVIGATION" = "Жеке деректер";
-"USER_PASSWORD_CHANGE" = "Cіздің құпия сөзіңіз";
-"CHANGE_PASSWORD_LABEL" = "Құпия сөз";
-"REPEAT_PASSWORD_LABEL" = "Құпия сөзіңізді қайталаңыз";
-"CHANGE_PASSWORD_NAVIGATION" = "Жаңа құпия сөз";
-"LOG_OUT_LABEL" = "Шығу";
-"LOG_OUT_QUES_LABEL" = "Сіз шынымен аккаунтыңыздан шығасыз ба?";
-"LOG_OUT_BUTTON" = "Ия, шығу";
-"NO_LOG_OUT_BUTTON" = "Жоқ";
-"SHARE_LABEL" = "Бөлісу";
-"ADD_TO_FAVORITE" = "Тізімге қосу";
-"FULL_DESCRIPTION_BUTTON" = "Толығырақ";
-"DIRECTOR_LABEL" = "Режиссер";
-"PRODUCER_LABEL" = "Продюсер";
-"SERIES_LABEL" = "Бөлімдер";
-"SCREENSHOT_LABEL" = "Скриншоттар";
-"SIMILAR_MOVIES_LABEL" = "Ұқсас телехикаялар";
-"SEARCH_NAVIGATION" = "Іздеу";
-"CATEGORIES_SEARCH" = "Санаттар";
-"SEARCH_PLACEHOLDER" = "Іздеу";
-"FAVORITE_NAVIGATION" = "Тізім";
-"SIGN_UP_LABEL" = "Тіркелу";
-"DETAIL_INFORM_LABEL" = "Деректерді толтыр";
-"SIGN_UP_EMAIL" = "Сіздің Email";
-"CHANGE_PASSWORD_LABEL" = "Құпия сөз";
-"REPEAT_PASSWORD_LABEL" = "Құпия сөзді қайталаңыз";
-"SIGN_UP_QUESTION_LABEL" = "Сізде аккаунт бар ма?";
-"SIGN_UP_BUTTON" = "Тіркелу";
-"SIGN_IN_BUTTON_UP" = "Кіру";
-"HELLO_LABEL" = "Сәлем";
-"DETAIL_SIGN_IN" = "Аккаунтқа кіріңіз";
-"SIGN_IN_QUESTION" = "Аккаунтыныз жоқ па?";
+"NOTIFICATIONS" = "Хабарландырулар";
+"DARK_MODE" = "Қараңғы режим";
+
+"YOUR_NAME" = "Сіздің атыңыз";
+"TELEPHONE" = "Телефон";
+"DATE_OF_BIRTH" = "Туылған күні";
+"SAVE_CHANGES" = "Өзгерістерді сақтау";
+
+"PASSWORD" = "Құпия сөз";
+"REPEAT_PASSWORD" = "Құпия сөзді қайталаңыз";
+"PASS_CHANGED" = "Құпия сөз сәтті өзгертілді";
+
+"EXIT" = "Шығу";
+"CONFIRM_EXIT_FROM_ACCOUNT" = "Сіз шынымен аккаунтыныздан";
+"YES_EXIT" = "Иә, шығу";
+"NO" = "Жоқ";
+
+"PLAY" = "Қарау";
+
+"CATEGORIES" = "Санаттар";
+"SEARCH_RESULTS" = "Іздеу нәтижелері";
+
+"CONTINUE_PLAY" = "Қарауды жалғастырыңыз";
+
+"HELLO" = "Сәлем";
+"SIGN_IN" = "Аккаунтқа кіріңіз";
+"YOUR_EMAIL" = "Сіздің email";
+"PASSWORD" = "Құпия сөз";
+"YOUR_PASSWORD" = "Сіздің құпия сөзіңіз";
+"FORGOT_YOUR_PASSWORD" = "Құпия сөзді ұмыттыңыз ба?";
+"LOGIN" = "Кіру";
+"NO_ACCOUNT" = "Аккаунтыныз жоқ па? ";
+"SIGN_UP" = "Тіркелу";
+"OR" = "Немесе";
+"SIGNUP_APPLE" = "Apple ID-мен тіркеліңіз";
+"SIGNUP_GOOGLE" = "Google-мен тіркеліңіз";
+
+"FILL_IN_DATA" = "Деректерді толтырыңыз";
+"All_FIELDS_MUST_BE_FILLED_IN" = "Барлық өрістер толтырылуы керек!";
+"PASS_NOT_MATCH" = "Құпия сөздер бірдей болуы тиіс!";
+"EMAIL_IN_USE" = "Мұндай email-ы бар пайдаланушы тіркелген";
+
+"WRONG_FORMAT" = "Қате формат";
+
+"CONNECTION_ERROR" = "Қосылым қатесі";
+
+"SKIP" = "Өткізу";
+"NEXT" = "Әрі қарай";
+"WELCOME" = "ÖZINŞE-ге қош келдің!";
+
+"CHOOSE_GENRE" = "Жанрды таңдаңыз";
+"AGE_CATEGORY" = "Жасына сәйкес";
+"ALL" = "Барлығы";
+
+"ADD_FAVORITE" = "Тізімге қосу";
+"SHARE" = "Бөлісу";
+"DETAILS" = "Толығырақ";
+"HIDE" = "Жасыру";
+"DIRECTOR" = "Режиссер:";
+"PRODUCER" = "Продюсер:";
+"SECTIONS" = "Бөлімдер";
+"SCREENSHOTS" = "Скриншоттар";
+"SIMILAR_SERIES" = "Ұқсас телехикаялар";
+
+"SEASON" = "сезон";
+"SEASON_IN_SERIES" = "сезон";
+"SERIES" = "серия";
+"EPISODE" = "-ші бөлім";
+
+
+"SIGN_IN" = "Аккаунтқа кіріңіз";
+"GOT_ACCOUNT" = "Сізде аккаунт бар ма? ";
+
+"WRONG_EMAIL" = "Email форматы дұрыс емес";
+"WRONG_EMAIL_TEXT" = "Қайта тексеріңіз";
+"CONNECTION_ERROR" = "Қосылым қатесі";
+"OOPS" = "Кешіріңіз";
+"NOT_AVAILABLE" = "Қызмет әзірленуде";

@@ -10,8 +10,7 @@
 
     class SearchCollectionViewCell: UICollectionViewCell {
         
-        let identifier = "SearchCollectionViewCell"
-        
+        //MARK: - Add UI Elements
         let backView = {
             let view = UIView()
             view.backgroundColor = UIColor(named: "F3F4F6 - 374151")
@@ -28,6 +27,7 @@
             return labelCell
         }()
         
+        //MARK: - Initialization
         override init(frame: CGRect) {
             super.init(frame: frame)
             setupUI()
@@ -38,7 +38,7 @@
         required init?(coder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
-
+        //MARK: - setupUI
         func setupUI() {
             contentView.addSubview(backView)
             backView.addSubview(label)

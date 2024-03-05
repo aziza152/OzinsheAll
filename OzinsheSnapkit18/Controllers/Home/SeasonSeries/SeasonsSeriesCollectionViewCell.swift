@@ -9,6 +9,7 @@ import UIKit
 
 class SeasonsSeriesCollectionViewCell: UICollectionViewCell {
     
+    //MARK: - Add UI Elements
     let seasonView = {
         let view = UIView()
         view.backgroundColor = UIColor(red: 0.592, green: 0.325, blue: 0.941, alpha: 1)
@@ -33,10 +34,12 @@ class SeasonsSeriesCollectionViewCell: UICollectionViewCell {
         backgroundColor = UIColor(named: "FFFFFF - 111827")
     }
     
+    //MARK: - Initialization
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - setupUI
     func setupUI() {
         
         contentView.addSubview(seasonView)

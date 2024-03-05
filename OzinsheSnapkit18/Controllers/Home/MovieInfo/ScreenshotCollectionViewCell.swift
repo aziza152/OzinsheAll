@@ -9,6 +9,7 @@ import UIKit
 
 class ScreenshotCollectionViewCell: UICollectionViewCell {
     
+    //MARK: - Add UI Elements
     let imageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
@@ -18,6 +19,7 @@ class ScreenshotCollectionViewCell: UICollectionViewCell {
         return image
     }()
     
+    //MARK: - Initialization
     override init(frame: CGRect) {
         super .init(frame: frame)
         setupUI()
@@ -26,7 +28,8 @@ class ScreenshotCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
+    //MARK: - setupUI
     func setupUI() {
         addSubview(imageView)
         
