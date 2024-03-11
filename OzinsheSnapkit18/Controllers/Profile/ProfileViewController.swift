@@ -157,7 +157,7 @@ class ProfileViewController: UIViewController, LanguageProtocol {
     let sw = UISwitch()
         sw.onTintColor = UIColor(named: "B376F7")
         sw.addTarget(self, action: #selector(darkMode), for: .valueChanged)
-            
+        
         return sw
     }()
 
@@ -165,19 +165,19 @@ class ProfileViewController: UIViewController, LanguageProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "FFFFFF-1C2431")
-      //  self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-       // navigationItem.title = "Профиль"
-//        navigationItem.rightBarButtonItem = logoutButton
-       // logoutButton.target = self
-        
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationController?.navigationBar.tintColor = UIColor(named: "111827-FFFFFF")
+        navigationItem.rightBarButtonItem = logoutButton
+        logoutButton.target = self
         setupUI()
         configureViews()
         loadUserEmail()
-  
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = false
+    
     }
   
     
@@ -306,6 +306,7 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         changePasswordButton.setTitle("CHANGE_PASSWORD".localized(), for: .normal)
         darkModeLabel.text = "DARK_MODE".localized()
         editLabel.text = "EDIT".localized()
+        navigationItem.title = "PROFILE".localized()
         
         if Localize.currentLanguage() == "ru" {
             languageLabel.text = "Русский"
@@ -340,9 +341,6 @@ class ProfileViewController: UIViewController, LanguageProtocol {
             languageVC.delegate = self
             present(languageVC, animated: true, completion: nil)
         }
-//        func languageDidChange() {
-//            configureViews()
-//        }
         
         @objc func darkMode(_ sender: UISwitch) {
             let defaults = UserDefaults.standard

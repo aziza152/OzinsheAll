@@ -14,6 +14,7 @@ class FavoriteViewController: UIViewController {
     
     //MARK: - Variables
     var favorite:[Movie] = []
+    var mainMovie = MainMovies()
     
     lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -28,6 +29,7 @@ class FavoriteViewController: UIViewController {
     //MARK: - Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         downloadFavorites()
+        navigationItem.title = "LIST".localized()
     }
     
     override func viewDidLoad() {
@@ -39,7 +41,6 @@ class FavoriteViewController: UIViewController {
     
     //MARK: - setupUI
     func setupUI() {
-        navigationItem.title = "FAVORITE_NAVIGATION".localized()
         
         view.addSubview(tableView)
         
@@ -96,18 +97,31 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
         let movieinfoVC = MovieInfoViewController()
-        
         movieinfoVC.movie = favorite[indexPath.row]
-        
         navigationController?.show(movieinfoVC, sender: self)
+    }
+
+    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        
+        if let cell = tableView.cellForRow(at: indexPath) {
+            cell.contentView.backgroundColor = UIColor(named: "#1C2431-#E5E7EB")
+        }
+    }
+
+    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        
+        if let cell = tableView.cellForRow(at: indexPath) {
+            cell.contentView.backgroundColor = UIColor(named: "#F9FAFB-#111827")
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell", for: indexPath) as! MovieTableViewCell
         
         cell.setData(movie: favorite[indexPath.row])
-        
+       
         return cell
     }
     

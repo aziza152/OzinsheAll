@@ -28,8 +28,8 @@ class SeasonSeriesViewController: UIViewController, UICollectionViewDataSource, 
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(SeasonsSeriesCollectionViewCell.self, forCellWithReuseIdentifier: "SeasonCell")
         collectionView.showsHorizontalScrollIndicator = false
-        
         collectionView.backgroundColor =  UIColor(named: "FFFFFF - 111827")
+        collectionView.contentMode = .scaleAspectFill
         
         return collectionView
     }()
@@ -42,6 +42,7 @@ class SeasonSeriesViewController: UIViewController, UICollectionViewDataSource, 
         tableView.showsHorizontalScrollIndicator = false
         tableView.backgroundColor = UIColor(named: "FFFFFF - 111827")
         tableView.register(SeasonSeriesTableViewCell.self, forCellReuseIdentifier: "SeriesCell")
+        
         return tableView
     }()
 
@@ -118,7 +119,7 @@ class SeasonSeriesViewController: UIViewController, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SeasonCell", for: indexPath) as! SeasonsSeriesCollectionViewCell
         cell.seasonLabel.text = "\(seasons[indexPath.row].number) сезон"
-        
+       
         cell.seasonView.layer.cornerRadius = 8
         if currentSeason == seasons[indexPath.row].number - 1 {
             cell.seasonLabel.textColor = UIColor(displayP3Red: 249/255, green: 250/255, blue: 251/255, alpha: 1)
@@ -149,7 +150,7 @@ class SeasonSeriesViewController: UIViewController, UICollectionViewDataSource, 
         cell.seriesLabel.text = "\(seasons[currentSeason].videos[indexPath.row].number)-ші бөлім"
         
         cell.seriesImage.layer.cornerRadius = 12
-        
+        cell.seriesImage.contentMode = .scaleAspectFill
         cell.seriesImage.sd_setImage(with: URL(string: "https://img.youtube.com/vi/\(seasons[currentSeason].videos[indexPath.row].link)/hqdefault.jpg"), completed: nil)
         
         return cell

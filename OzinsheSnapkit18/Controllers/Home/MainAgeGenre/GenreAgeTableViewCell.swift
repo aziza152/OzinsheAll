@@ -9,7 +9,6 @@ import UIKit
 
 class GenreAgeTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    //MARK: - Variables
     var mainMovie = MainMovies()
     var delegate: MovieProtocol?
     var movies: [Movie] = []
@@ -18,7 +17,7 @@ class GenreAgeTableViewCell: UITableViewCell, UICollectionViewDataSource, UIColl
     let titleLabel = {
         let label = UILabel()
         label.font = UIFont(name: "SFProDisplay-Bold", size: 16)
-        label.textColor = UIColor(red: 0.07, green: 0.09, blue: 0.15, alpha: 1)
+        label.textColor = UIColor(named: "111827-FFFFFF")
         
         return label
     }()
@@ -39,7 +38,6 @@ class GenreAgeTableViewCell: UITableViewCell, UICollectionViewDataSource, UIColl
         return collectionView
     }()
     
-// MARK: - Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -105,6 +103,12 @@ class GenreAgeTableViewCell: UITableViewCell, UICollectionViewDataSource, UIColl
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        delegate?.movieDidSelect(movie: mainMovie.movies[indexPath.row])
+        if mainMovie.cellType == .ageCategory {
+            delegate?.ageDidSelect(id: mainMovie.categoryAges[indexPath.row].id, name: mainMovie.categoryAges[indexPath.row].name)
+        } else {
+            delegate?.genreDidSelect(id: mainMovie.genres[indexPath.row].id, name: mainMovie.genres[indexPath.row].name)
+        }
     }
-}
+
+    }
+

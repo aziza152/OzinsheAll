@@ -8,49 +8,43 @@
     import UIKit
     import SnapKit
 
-    class SearchCollectionViewCell: UICollectionViewCell {
+class SearchCollectionViewCell: UICollectionViewCell {
+    
+    let view = {
+        let view = UIView()
+        view.layer.cornerRadius = 8
+        view.backgroundColor = UIColor(named: "F3F4F6-374151")
         
-        //MARK: - Add UI Elements
-        let backView = {
-            let view = UIView()
-            view.backgroundColor = UIColor(named: "F3F4F6 - 374151")
-            view.layer.cornerRadius = 8
-            return view
-        }()
+        return view
+    }()
+    
+    let labelText = {
+        let label = UILabel()
+        label.font = UIFont(name: "SFProDisplay-Semibold", size: 12)
+        label.textColor = UIColor(named: "374151-F9FAFB")
         
-        let label: UILabel = {
-            let labelCell = UILabel()
-            labelCell.text = ""
-            labelCell.font = UIFont(name: "SFProDisplay-Semibold", size: 12)
-            labelCell.textColor = UIColor(named: "374151 - 1C2431")
-            
-            return labelCell
-        }()
-        
-        //MARK: - Initialization
-        override init(frame: CGRect) {
-            super.init(frame: frame)
-            setupUI()
-            backgroundColor = UIColor(named: "FFFFFF - 111827")
-            layer.cornerRadius = 8
-        }
-        
-        required init?(coder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
-        //MARK: - setupUI
-        func setupUI() {
-            contentView.addSubview(backView)
-            backView.addSubview(label)
-            
-            backView.snp.makeConstraints { make in
-                make.edges.equalTo(contentView.safeAreaLayoutGuide)
-            }
-        
-            label.snp.makeConstraints { make in
-                make.right.left.equalToSuperview().inset(16)
-                make.bottom.top.equalToSuperview()
-                make.height.equalTo(34)
-        }
-      }
+        return label
+    }()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupUI()
     }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    //MARK: - setupUI
+    func setupUI() {
+        contentView.addSubview(view)
+        contentView.addSubview(labelText)
+        
+        view.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        labelText.snp.makeConstraints { make in
+            make.verticalEdges.equalToSuperview().inset(8)
+            make.horizontalEdges.equalToSuperview().inset(16)
+            make.height.equalTo(34)
+        }
+    }
+}

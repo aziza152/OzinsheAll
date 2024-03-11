@@ -1,3 +1,4 @@
+
 //
 //  UserInfoViewController.swift
 //  OzinsheSnapkit18
@@ -13,135 +14,274 @@ import SwiftyJSON
 class UserInfoViewController: UIViewController {
     
     var userID: Int?
+    var textToPass: String?
     
-    let yourNameLabel = {
+    let nameLabel = {
         let label = UILabel()
-        label.text = "Сіздің атыңыз".localized()
-        label.textColor = UIColor(red: 0.612, green: 0.639, blue: 0.686, alpha: 1)
+        label.text = "Сіздің атыңыз"
         label.font = UIFont(name: "SFProDisplay-Bold", size: 14)
+        label.textColor = UIColor(named: "9CA3AF")
         
         return label
     }()
     
     let nameTextField = {
-        let textField = UITextField()
-        textField.placeholder = "Атыңынызды енгізіңіз..."
-        textField.textColor = UIColor(named: "111827 - FFFFFF")
-        textField.font = UIFont(name: "SFProDisplay-Medium", size: 16)
-        
-        return textField
+        let tf = UITextField()
+        tf.borderStyle = .none
+        tf.textAlignment = .left
+        tf.textColor = UIColor(named: "111827-FFFFFF")
+        tf.font = UIFont(name: "SFProDisplay-Regular", size: 16)
+        return tf
     }()
     
-    let grayView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(red: 0.82, green: 0.835, blue: 0.859, alpha: 1)
+    let line1 = {
+        let line = UIView()
+        line.backgroundColor = UIColor(named: "D1D5DB-1C2431")
         
-        return view
+        return line
     }()
     
     let emailLabel = {
         let label = UILabel()
         label.text = "Email"
-        label.textColor = UIColor(red: 0.612, green: 0.639, blue: 0.686, alpha: 1)
         label.font = UIFont(name: "SFProDisplay-Bold", size: 14)
+        label.textColor = UIColor(named: "9CA3AF")
         
         return label
     }()
     
     let emailTextField = {
-        let textField = UITextField()
-        textField.placeholder = "ali@gmail.com"
-        textField.textColor = UIColor(named: "111827 - FFFFFF")
-        textField.font = UIFont(name: "SFProDisplay-Medium", size: 16)
+        let tf = UITextField()
+        tf.borderStyle = .none
+        tf.font  = UIFont(name: "SFProDisplay-Regular", size: 16)
+        tf.textColor = UIColor(named: "111827-FFFFFF")
+        tf.textAlignment = .left
+        tf.keyboardType = .emailAddress
+        tf.autocapitalizationType = .none
+        tf.textContentType = .emailAddress
         
-        return textField
+        
+        return tf
     }()
     
-    let grayView2 = {
-        let view = UIView()
-        view.backgroundColor = UIColor(red: 0.82, green: 0.835, blue: 0.859, alpha: 1)
+    let line2 = {
+        let line = UIView()
+        line.backgroundColor = UIColor(named: "D1D5DB-1C2431")
         
-        return view
+        return line
     }()
     
     let phoneLabel = {
         let label = UILabel()
-        label.text = "Телефон".localized()
-        label.textColor = UIColor(red: 0.612, green: 0.639, blue: 0.686, alpha: 1)
+        label.text = "Телефон"
+        label.textColor = UIColor(named: "9CA3AF")
         label.font = UIFont(name: "SFProDisplay-Bold", size: 14)
         
         return label
     }()
     
     let phoneTextField = {
-        let textField = UITextField()
-        textField.placeholder = "+7 702 732-10-31"
-        textField.textColor = UIColor(named: "111827 - FFFFFF")
-        textField.font = UIFont(name: "SFProDisplay-Medium", size: 16)
+        let tf = UITextField()
+        tf.borderStyle = .none
+        tf.font = UIFont(name: "SFProDisplay-Regular", size: 16)
+        tf.textColor = UIColor(named: "111827-FFFFFF")
+        tf.textAlignment = .left
+        tf.keyboardType = .numbersAndPunctuation
+        tf.textContentType = .telephoneNumber
         
-        return textField
+        return tf
     }()
     
-    let grayView3 = {
-        let view = UIView()
-        view.backgroundColor = UIColor(red: 0.82, green: 0.835, blue: 0.859, alpha: 1)
+    let line3 = {
+        let line = UIView()
+        line.backgroundColor = UIColor(named: "D1D5DB-1C2431")
         
-        return view
+        return line
     }()
     
-    let birthLabel = {
+    let birthdayLabel = {
         let label = UILabel()
-        label.text = "Туылған күні".localized()
-        label.textColor = UIColor(red: 0.612, green: 0.639, blue: 0.686, alpha: 1)
+        label.text = "Туылған күні"
+        label.textColor = UIColor(named: "9CA3AF")
         label.font = UIFont(name: "SFProDisplay-Bold", size: 14)
         
         return label
     }()
     
-    let birthTextField = {
-        let textField = UITextField()
-        textField.placeholder = "2005-01-28"
-        textField.textColor = UIColor(named: "111827 - FFFFFF")
-        textField.font = UIFont(name: "SFProDisplay-Medium", size: 16)
+    let birthdayTextField = {
+        let tf = UITextField()
+        tf.borderStyle = .none
+        tf.font = UIFont(name: "SFProDisplay-Regular", size: 16)
+        tf.textColor = UIColor(named: "111827-FFFFFF")
+        tf.textAlignment = .left
+        tf.keyboardType = .numberPad
         
-        return textField
+        return tf
     }()
     
-    let grayView4 = {
-        let view = UIView()
-        view.backgroundColor = UIColor(red: 0.82, green: 0.835, blue: 0.859, alpha: 1)
+    let line4 = {
+        let line = UIView()
+        line.backgroundColor = UIColor(named: "D1D5DB-1C2431")
         
-        return view
+        return line
     }()
     
-    lazy var saveChangesButton = {
+    lazy var datePicker = {
+        let picker = UIDatePicker(frame: .zero)
+        picker.datePickerMode = .date
+        picker.timeZone = TimeZone.current
+        picker.locale = .autoupdatingCurrent
+        picker.preferredDatePickerStyle = .wheels
+        picker.addTarget(self, action: #selector(handleDatePicker(sender:)), for: .valueChanged)
+        
+        return picker
+    }()
+    
+    lazy var toolBar = {
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+        doneToolbar.barStyle = .default
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Готово", style: .done, target: self, action: #selector(doneButtonAction))
+        
+        done.setTitleTextAttributes([
+            .foregroundColor: UIColor.link
+        ], for: .normal)
+        
+        let items = [flexSpace, done]
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+        
+        return doneToolbar
+    }()
+    
+    let saveButton = {
         let button = UIButton()
         button.setTitle("Өзгерістерді сақтау", for: .normal)
-        button.backgroundColor = UIColor(red: 0.5, green: 0.18, blue: 0.99, alpha: 1)
-        button.titleLabel?.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
+        button.backgroundColor = UIColor(named: "7E2DFC")
+        button.setTitleColor(UIColor.white, for: .normal)
         button.layer.cornerRadius = 12
-        button.addTarget(self, action: #selector(saveInfoButton), for: .touchUpInside)
+        button.titleLabel?.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
+        button.addTarget(self, action: #selector(saveChanges), for: .touchUpInside)
         
         return button
     }()
-
-    //MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        view.backgroundColor = UIColor(named: "FFFFFF-111827")
+        localizeLanguage()
         setupUI()
         downloadPersonalInfo()
-      localizeLanguage()
+        hideKeyboardWhenTappedAround()
     }
     
-    //MARK: - Add functions
+    //MARK: - setupUI
+    func setupUI() {
+        view.addSubview(nameLabel)
+        view.addSubview(nameTextField)
+        view.addSubview(line1)
+        view.addSubview(emailLabel)
+        view.addSubview(emailTextField)
+        view.addSubview(line2)
+        view.addSubview(phoneLabel)
+        view.addSubview(phoneTextField)
+        view.addSubview(line3)
+        view.addSubview(birthdayLabel)
+        view.addSubview(birthdayTextField)
+        view.addSubview(line4)
+        view.addSubview(saveButton)
+        
+        nameLabel.snp.makeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide).inset(24)
+            make.left.equalToSuperview().inset(24)
+        }
+        nameTextField.snp.makeConstraints { make in
+            make.top.equalTo(nameLabel.snp.bottom)
+            make.left.equalToSuperview().inset(24)
+            make.right.equalToSuperview().inset(24)
+            make.height.equalTo(44)
+        }
+        line1.snp.makeConstraints { make in
+            make.top.equalTo(nameTextField.snp.bottom)
+            make.left.equalToSuperview().inset(24)
+            make.right.equalToSuperview().inset(24)
+            make.height.equalTo(1)
+        }
+        emailLabel.snp.makeConstraints { make in
+            make.top.equalTo(line1.snp.bottom).offset(24)
+            make.left.equalToSuperview().inset(24)
+        }
+        emailTextField.snp.makeConstraints { make in
+            make.top.equalTo(emailLabel.snp.bottom)
+            make.left.equalToSuperview().inset(24)
+            make.right.equalToSuperview().inset(24)
+            make.height.equalTo(44)
+        }
+        line2.snp.makeConstraints { make in
+            make.top.equalTo(emailTextField.snp.bottom)
+            make.left.equalToSuperview().inset(24)
+            make.right.equalToSuperview().inset(24)
+            make.height.equalTo(1)
+        }
+        phoneLabel.snp.makeConstraints { make in
+            make.top.equalTo(line2.snp.bottom).offset(24)
+            make.left.equalToSuperview().inset(24)
+        }
+        phoneTextField.snp.makeConstraints { make in
+            make.top.equalTo(phoneLabel.snp.bottom)
+            make.left.equalToSuperview().inset(24)
+            make.right.equalToSuperview().inset(24)
+            make.height.equalTo(44)
+        }
+        line3.snp.makeConstraints { make in
+            make.top.equalTo(phoneTextField.snp.bottom)
+            make.left.equalToSuperview().inset(24)
+            make.right.equalToSuperview().inset(24)
+            make.height.equalTo(1)
+        }
+        birthdayLabel.snp.makeConstraints { make in
+            make.top.equalTo(line3.snp.bottom).offset(24)
+            make.left.equalToSuperview().inset(24)
+        }
+        birthdayTextField.inputView = datePicker
+        birthdayTextField.inputAccessoryView = toolBar
+        birthdayTextField.snp.makeConstraints { make in
+            make.top.equalTo(birthdayLabel.snp.bottom)
+            make.left.equalToSuperview().inset(24)
+            make.right.equalToSuperview().inset(24)
+            make.height.equalTo(44)
+        }
+        line4.snp.makeConstraints { make in
+            make.top.equalTo(birthdayTextField.snp.bottom)
+            make.left.equalToSuperview().inset(24)
+            make.right.equalToSuperview().inset(24)
+            make.height.equalTo(1)
+        }
+        saveButton.snp.makeConstraints { make in
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(24)
+            make.left.equalToSuperview().inset(24)
+            make.right.equalToSuperview().inset(24)
+            make.height.equalTo(56)
+        }
+    }
+    
     func localizeLanguage() {
         navigationItem.title = "PERSONAL_DATA".localized()
-        yourNameLabel.text = "YOUR_NAME".localized()
-        nameTextField.placeholder = "USER_INFO_NAME_TEXT_FIELD".localized()
+        nameLabel.text = "YOUR_NAME".localized()
         phoneLabel.text = "TELEPHONE".localized()
-        birthLabel.text = "DATE_OF_BIRTH".localized()
-        saveChangesButton.setTitle("SAVE_CHANGES".localized(), for: .normal)
+        birthdayLabel.text = "DATE_OF_BIRTH".localized()
+        saveButton.setTitle("SAVE_CHANGES".localized(), for: .normal)
+    }
+    
+    @objc func handleDatePicker(sender: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMMM yyyy"
+        self.birthdayTextField.text = dateFormatter.string(from: sender.date)
+    }
+    
+    @objc func doneButtonAction(){
+        birthdayTextField.resignFirstResponder()
     }
     
     func hideKeyboardWhenTappedAround() {
@@ -153,174 +293,81 @@ class UserInfoViewController: UIViewController {
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
-    
+    //MARK: - downloadPersonalInfo
     func downloadPersonalInfo() {
         SVProgressHUD.show()
-        let headers: HTTPHeaders = ["Authorization": "Bearer \(Storage.sharedInstance.accessToken)"]
         
-        AF.request(Urls.UPLOAD_USER_INFO, method: .get, headers: headers).responseData { response in
-            
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(Storage.sharedInstance.accessToken)"
+        ]
+        
+        AF.request(Urls.UPLOAD_USER_INFO, method: .get, headers: headers ).responseData { response in
             SVProgressHUD.dismiss()
-            var resultString = ""
-            if let data = response.data {
-                resultString = String(data: data, encoding: .utf8)!
-                print(resultString)
-            }
-            
             if response.response?.statusCode == 200 {
                 let json = JSON(response.data!)
-                let name = json ["name"]
-                let email = json ["user"]["email"]
+                let name = json["name"]
+                let email = json["user"]["email"]
                 let phoneNumber = json["phoneNumber"]
-                let birthDate = json ["birthDate"]
-                self.userID = json ["id"].int
+                
+                if let birthDate = json["birthDate"].string {
+                   let dateFormatter = DateFormatter()
+                        dateFormatter.dateFormat = "yyyy-MM-dd"
+                if let date = dateFormatter.date(from: birthDate){
+                    self.datePicker.date = date
+                        dateFormatter.dateFormat = "dd MMMM yyyy"
+                    self.birthdayTextField.text = dateFormatter.string(from: date)
+                    }
+                }
+                self.userID = json["id"].int
                 self.nameTextField.text = name.stringValue
                 self.emailTextField.text = email.stringValue
                 self.phoneTextField.text = phoneNumber.stringValue
-                self.birthTextField.text = birthDate.stringValue
+                
             } else {
                 SVProgressHUD.showError(withStatus: "CONNECTION_ERROR".localized())
-
+            }
+        }
+    }
+    //MARK: - saveChanges
+    @objc func saveChanges() {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let birthdate = dateFormatter.string(from: datePicker.date)
+        
+        let phoneNumber = phoneTextField.text ?? ""
+        let name = nameTextField.text ?? ""
+        
+        
+        let parameters = ["name": name, "phoneNumber": phoneNumber, "birthDate": birthdate]
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(Storage.sharedInstance.accessToken)"
+        ]
+        
+        AF.request(Urls.UPLOAD_USER_INFO, method: .put, parameters: parameters as Parameters, encoding: JSONEncoding.default, headers: headers).responseData { response in
+            var resultString = ""
+            if let data = response.data{
+                resultString = String(data: data, encoding: .utf8)!
+                print(resultString)
+            }
+            if response.response?.statusCode == 200{
+                let json = JSON(response.data!)
+                print("JSON: \(json)")
+                
+//                self.nameTextField.text = json["name"].string
+//                self.emailTextField.text = json["user"]["email"].string
+//                self.phoneTextField.text = json["phoneNumber"].string
+                
+            }else{
                 var ErrorString = "CONNECTION_ERROR".localized()
-                if let sCode = response.response?.statusCode {
-                    ErrorString = ErrorString + " \(sCode)"
+                if let sCode = response.response?.statusCode{
+                    ErrorString = ErrorString + "\(sCode)"
                 }
-                ErrorString = ErrorString + " \(resultString)"
+                ErrorString = ErrorString + "\(resultString)"
                 SVProgressHUD.showError(withStatus: "\(ErrorString)")
             }
-        }
-    }
-    
-    @objc func saveInfoButton() {
-        let updatedName = nameTextField.text ?? ""
-        let updatedEmail = emailLabel.text ?? ""
-        let updatedBirth = birthTextField.text ?? ""
-        let updatedPhone = phoneTextField.text ?? ""
-        
-        updateUserInfo(updatedName: updatedName, updatedEmail: updatedEmail, updatedBirth: updatedBirth, updatedPhone: updatedPhone)
-    }
-    
-    func updateUserInfo(updatedName: String, updatedEmail: String, updatedBirth: String, updatedPhone: String) {
-        let headers: HTTPHeaders = ["Authorization": "Bearer \(Storage.sharedInstance.accessToken)"]
-        
-        let parameters: [String: Any] = [
-            "name": updatedName,
-            "email": updatedEmail,
-            "phoneNumber": updatedPhone,
-            "birthDate": updatedBirth,
-            ]
-        
-        AF.request(Urls.UPLOAD_USER_INFO, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
-            .responseData { response in
-                SVProgressHUD.dismiss()
-                var resultString = ""
-                if let data = response.data {
-                    resultString = String(data: data, encoding: .utf8)!
-                    print(resultString)
-                }
             
-                if response.response?.statusCode == 200 {
-                    print("User information updated successfully")
-                    
-                    self.navigationController?.popViewController(animated: true)
-                } else {
-                    SVProgressHUD.showError(withStatus: resultString)
-    
-                    let errorString = "CONNECTION_ERROR".localized() + " \(response.response?.statusCode ?? -1) \(resultString)"
-                    SVProgressHUD.showError(withStatus: errorString)
-                }
-            }
-    }
-    
-    //MARK: - Add subviews & constraints
-    func setupUI() {
-        view.backgroundColor = UIColor(named: "FFFFFF - 111827")
-        navigationItem.title = "Жеке деректер".localized()
-        
-        view.addSubview(yourNameLabel)
-        view.addSubview(nameTextField)
-        view.addSubview(grayView)
-        view.addSubview(emailLabel)
-        view.addSubview(emailTextField)
-        view.addSubview(grayView2)
-        view.addSubview(phoneLabel)
-        view.addSubview(phoneTextField)
-        view.addSubview(grayView3)
-        view.addSubview(birthLabel)
-        view.addSubview(birthTextField)
-        view.addSubview(grayView4)
-        view.addSubview(saveChangesButton)
-        
-        yourNameLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(24)
-            make.left.equalToSuperview().inset(24)
-            make.height.equalTo(21)
         }
-        
-        nameTextField.snp.makeConstraints { make in
-            make.top.equalTo(yourNameLabel.snp.bottom)
-            make.left.right.equalToSuperview().inset(24)
-            make.height.equalTo(33)
-        }
-        
-        grayView.snp.makeConstraints { make in
-            make.top.equalTo(nameTextField.snp.bottom)
-            make.left.right.equalToSuperview().inset(24)
-            make.height.equalTo(1)
-        }
-        
-        emailLabel.snp.makeConstraints { make in
-            make.top.equalTo(grayView.snp.bottom).offset(24)
-            make.left.right.equalToSuperview().inset(24)
-        }
-        
-        emailTextField.snp.makeConstraints { make in
-            make.top.equalTo(emailLabel.snp.bottom).offset(8)
-            make.left.right.equalToSuperview().inset(24)
-        }
-        
-        grayView2.snp.makeConstraints { make in
-            make.top.equalTo(emailTextField.snp.bottom).offset(12)
-            make.left.right.equalToSuperview().inset(24)
-            make.height.equalTo(1)
-        }
-        
-        phoneLabel.snp.makeConstraints { make in
-            make.top.equalTo(grayView2.snp.bottom).offset(24)
-            make.left.right.equalToSuperview().inset(24)
-        }
-        
-        phoneTextField.snp.makeConstraints { make in
-            make.top.equalTo(phoneLabel.snp.bottom).offset(8)
-            make.left.right.equalToSuperview().inset(24)
-        }
-        
-        grayView3.snp.makeConstraints { make in
-            make.top.equalTo(phoneTextField.snp.bottom)
-            make.left.right.equalToSuperview().inset(24)
-            make.height.equalTo(1)
-        }
-        
-        birthLabel.snp.makeConstraints { make in
-            make.top.equalTo(grayView3.snp.bottom).offset(24)
-            make.left.right.equalToSuperview().inset(24)
-        }
-        
-        birthTextField.snp.makeConstraints { make in
-            make.top.equalTo(birthLabel.snp.bottom).offset(8)
-            make.left.right.equalToSuperview().inset(24)
-        }
-        
-        grayView4.snp.makeConstraints { make in
-            make.top.equalTo(birthTextField.snp.bottom).offset(12)
-            make.left.right.equalToSuperview().inset(24)
-            make.height.equalTo(1)
-        }
-        
-        saveChangesButton.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(24)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(8)
-            make.height.equalTo(56)
-        }
+        self.navigationController?.popViewController(animated: true)
     }
 }

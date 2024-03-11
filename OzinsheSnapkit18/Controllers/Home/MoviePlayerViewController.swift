@@ -11,14 +11,14 @@ import YouTubePlayer
 class MoviePlayerViewController: UIViewController {
 
     //MARK: - Variables
-    var movie = Movie()
+  //  var movie = Movie()
     var video_link = ""
-    
-    let player = {
-        let view = YouTubePlayerView()
-        
-        return view
-    }()
+    var player = YouTubePlayerView()
+//    let player = {
+//        let view = YouTubePlayerView()
+//
+//        return view
+//    }()
     
     //MARK: - Life Cycle
     override func viewDidLoad() {
@@ -26,10 +26,10 @@ class MoviePlayerViewController: UIViewController {
         view.backgroundColor = UIColor(named: "FFFFFF - 111827")
         view.addSubview(player)
         
-        player.snp.makeConstraints { make in
-            make.top.left.right.bottom.equalTo(view.safeAreaLayoutGuide)
-        }
-        
         player.loadVideoID(video_link)
+        
+        player.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
 }

@@ -12,8 +12,7 @@ import Alamofire
 import SVProgressHUD
 
 class MainPageViewController: UIViewController, MovieProtocol {
-    
-//MARK: - Variables
+
     var mainMovies: [MainMovies] = []
     
     let tableView = {
@@ -32,7 +31,7 @@ class MainPageViewController: UIViewController, MovieProtocol {
         setupUI()
         downloadMainBanners()
         addBarImage()
-       
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
 
 //MARK: - addBarImage
@@ -61,7 +60,7 @@ class MainPageViewController: UIViewController, MovieProtocol {
         }
     }
     
-    //MARK: - downloadMainBanners
+    //MARK: - download
     func downloadMainBanners() {
         SVProgressHUD.show()
         
@@ -102,7 +101,6 @@ class MainPageViewController: UIViewController, MovieProtocol {
         }
     }
     
-    //MARK: - downloadHistory
     func downloadHistory() {
         let headers:HTTPHeaders = ["Authorization" : "Bearer \(Storage.sharedInstance.accessToken)"]
         SVProgressHUD.show()
@@ -128,7 +126,6 @@ class MainPageViewController: UIViewController, MovieProtocol {
         }
     }
     
-    //MARK: - downloadMainMovies
     func downloadMainMovies() {
         let headers:HTTPHeaders = ["Authorization" : "Bearer \(Storage.sharedInstance.accessToken)"]
         SVProgressHUD.show()
@@ -151,7 +148,6 @@ class MainPageViewController: UIViewController, MovieProtocol {
         }
     }
     
-    //MARK: - downloadGenres
     func downloadGenres() {
         let headers:HTTPHeaders = ["Authorization" : "Bearer \(Storage.sharedInstance.accessToken)"]
         SVProgressHUD.show()
@@ -177,7 +173,6 @@ class MainPageViewController: UIViewController, MovieProtocol {
         }
     }
     
-    //MARK: - downloadCategoryAges
     func downloadCategoryAges() {
         SVProgressHUD.show()
         
@@ -264,11 +259,42 @@ extension MainPageViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return 296
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        if mainMovies[indexPath.row].cellType != .mainMovie {
+            return
+        }
+        
+        let categoryVC = CategoryViewController()
+        categoryVC.categoryId = mainMovies[indexPath.row].categoryId
+        categoryVC.categoryName = mainMovies[indexPath.row].categoryName
+        navigationController?.show(categoryVC, sender: self)
+    }
+    //MARK: - func DidSelect
     
     func movieDidSelect(movie: Movie) {
-        let movieInfoVc = MovieInfoViewController()
-        movieInfoVc.movie = movie
-        navigationController?.pushViewController(movieInfoVc, animated: true)
+        let movieInfoVC = MovieInfoViewController()
+        movieInfoVC.movie = movie
+        navigationController?.show(movieInfoVC, sender: true)
+        
     }
     
+    func ageDidSelect(id: Int, name: String) {
+        let categoryVC = CategoryViewController()
+        categoryVC.categoryId = id
+        categoryVC.categoryName = name
+        categoryVC.categoryString = "Age"
+        navigationController?.pushViewController(categoryVC, animated: true)
+        navigationItem.title = ""
+    }
+    
+    func genreDidSelect(id: Int, name: String) {
+        let categoryVC = CategoryViewController()
+        categoryVC.categoryId = id
+        categoryVC.categoryName = name
+        categoryVC.categoryString = "Genre"
+        navigationController?.pushViewController(categoryVC, animated: true)
+       navigationItem.title = ""
+    }
 }

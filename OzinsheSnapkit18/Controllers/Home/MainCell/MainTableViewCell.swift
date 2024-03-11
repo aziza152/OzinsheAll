@@ -19,18 +19,17 @@ class MainTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollecti
     let titleLabel = {
         let label = UILabel()
         label.font = UIFont(name: "SFProDisplay-Bold", size: 16)
-        label.textColor = UIColor(red: 0.07, green: 0.09, blue: 0.15, alpha: 1)
+        label.textColor = UIColor(named: "111827-FFFFFF")
         
         return label
     }()
-    let allButton = {
-        let button = UIButton()
-        button.setTitle("Барлығы", for: .normal)
-        button.setTitleColor(UIColor(red: 0.7, green: 0.46, blue: 0.97, alpha: 1), for: .normal)
-        button.titleLabel?.font = UIFont(name: "SFProDisplay-Bold", size: 14)
-    //    button.addTarget(self, action: #selector(), for: .touchUpInside)
+    let allLabel = {
+        let label = UILabel()
+        label.text = "Барлығы"
+        label.textColor = UIColor(named: "B376F7")
+        label.font = UIFont(name: "SFProDisplay-Semibold", size: 14)
         
-        return button
+        return label
     }()
     
     let mainCollectionView = {
@@ -56,6 +55,7 @@ class MainTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollecti
         mainCollectionView.dataSource = self
         mainCollectionView.delegate = self
         setupUI()
+        
     }
     
     required init?(coder: NSCoder) {
@@ -74,7 +74,7 @@ class MainTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollecti
         contentView.backgroundColor = UIColor(named: "FFFFFF - 111827")
         contentView.addSubview(titleLabel)
         contentView.addSubview(mainCollectionView)
-        contentView.addSubview(allButton)
+        contentView.addSubview(allLabel)
         
         titleLabel.snp.makeConstraints { make in
             make.left.equalTo(24)
@@ -85,7 +85,7 @@ class MainTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollecti
             make.left.right.equalToSuperview()
             make.bottom.equalToSuperview().inset(10)
         }
-        allButton.snp.makeConstraints { make in
+        allLabel.snp.makeConstraints { make in
             make.right.equalToSuperview().inset(24)
             make.top.equalToSuperview()
         }
@@ -105,6 +105,20 @@ class MainTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollecti
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         delegate?.movieDidSelect(movie: mainMovie.movies[indexPath.row])
+    
+    }
+    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        
+        if let cell = tableView.cellForRow(at: indexPath) {
+            cell.contentView.backgroundColor = UIColor(named: "#1C2431-#E5E7EB")
+        }
+    }
+
+    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        
+        if let cell = tableView.cellForRow(at: indexPath) {
+            cell.contentView.backgroundColor = UIColor(named: "#F9FAFB-#111827")
+        }
     }
     
 }

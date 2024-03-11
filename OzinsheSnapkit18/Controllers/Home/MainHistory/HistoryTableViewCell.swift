@@ -19,7 +19,7 @@ class HistoryTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollect
     let titleLabel = {
         let label = UILabel()
         label.text = "Қарауды жалғастырыңыз"
-        label.textColor = UIColor(red: 0.07, green: 0.09, blue: 0.15, alpha: 1)
+        label.textColor = UIColor(named: "111827-FFFFFF")
         label.font = UIFont(name: "SFProDisplay-Bold", size: 16)
        
         
@@ -98,6 +98,7 @@ class HistoryTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollect
         collectionView.deselectItem(at: indexPath, animated: true)
         delegate?.movieDidSelect(movie: movies[indexPath.row])
     }
+    
     
  }
         

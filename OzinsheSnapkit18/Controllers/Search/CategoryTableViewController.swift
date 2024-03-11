@@ -10,113 +10,115 @@ import SVProgressHUD
 import Alamofire
 import SwiftyJSON
 
-class CategoryTableViewController: UITableViewController {
-
-    //MARK: - Variables
-    var categoryID = 0
-    var categoryName = ""
-    var isLoading: Bool = false
-    var movies:[Movie] = []
+class CategoryViewController: UIViewController {
     
-    //MARK: - Life Cycle
+    var categoryId = 0
+    var categoryString: String = ""
+    var categoryName = ""
+    
+    var movie: [Movie] = []
+    
+    let tableView = {
+        let tv = UITableView()
+        tv.register(MovieTableViewCell.self, forCellReuseIdentifier: "MovieTableViewCell")
+        tv.separatorStyle = .none
+        tv.backgroundColor = UIColor(named: "FFFFFF-111827")
+        
+        return tv
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
-    
-        tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: "MovieTableCell")
-        
+        view.backgroundColor = UIColor(named: "FFFFFF-111827")
         self.title = categoryName
-        navigationItem.title = ""
-        
-        downloadCategory()
+        setupUI()
+        downloadMovies()
     }
-    
-    @objc func handleRefresh() {
-        if !isLoading {
-            isLoading = true
-            movies.removeAll()
-            tableView.reloadData()
-            downloadCategory()
+    //MARK: - setupUI
+    func setupUI() {
+        view.addSubview(tableView)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(view.self.safeAreaLayoutGuide)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+            make.bottom.equalTo(view.self.safeAreaLayoutGuide)
         }
     }
-    
-    //MARK: - downloadCategory
-    func downloadCategory() {
-        SVProgressHUD.show()
-        
+    //MARK: - downloadMovies
+    func downloadMovies() {
         let headers: HTTPHeaders = ["Authorization": "Bearer \(Storage.sharedInstance.accessToken)"]
         
-        let parametres = ["categoryId": categoryID]
+        let parameters = ["categoryId": categoryId]
         
-        self.isLoading = false
-        self.refreshControl?.endRefreshing()
+        SVProgressHUD.show()
         
-        AF.request(Urls.MOVIES_BY_CATEGORY_URL, method: .get, parameters: parametres, headers: headers).responseData { response in
-            
+        AF.request(Urls.MOVIES_BY_CATEGORY_URL, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: headers).responseData { response in
             SVProgressHUD.dismiss()
-            var resultString = ""
-            if let data = response.data {
-                resultString = String(data: data, encoding: .utf8)!
-                print(resultString)
-            }
             
             if response.response?.statusCode == 200 {
+                // Success
                 let json = JSON(response.data!)
-                print("JSON: \(json)")
                 
-                if json["content"].exists() {
-                    if let array = json["content"].array {
-                        for item in array {
-                            let movie = Movie(json: item)
-                            self.movies.append(movie)
-                        }
-                        self.tableView.reloadData()
-                    } else {
-                        SVProgressHUD.showError(withStatus: "CONNECTION_ERROR".localized())
+                if let items = json["content"].array {
+                    
+                    for item in items {
+                        let movie = Movie(json: item)
+                        
+                        self.movie.append(movie)
                     }
-                } else {
-                    var ErrorString = "CONNECTION_ERROR".localized()
-                    if let sCode = response.response?.statusCode {
-                        ErrorString = ErrorString + "\(sCode)"
-                    }
-                    ErrorString = ErrorString + "\(resultString)"
-                    SVProgressHUD.showError(withStatus: "\(ErrorString)")
+                    self.tableView.reloadData()
                 }
+            } else {
+                // Error
+                var resultString = ""
+                
+                if let data = response.data {
+                    resultString = String(data: data, encoding: .utf8)!
+                }
+                
+                SVProgressHUD.showError(withStatus: resultString)
             }
         }
     }
-
-    // MARK: - Table view
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return movies.count
+}
+//MARK: - UITableViewDataSource, UITableViewDelegate
+extension CategoryViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return movie.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieTableCell", for: indexPath) as! MovieTableViewCell
-        
-        cell.setData(movie: movies[indexPath.row])
-        
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell", for: indexPath) as! MovieTableViewCell
+        cell.setData(movie: movie[indexPath.row])
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 153
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 152
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let movieinfoVC = MovieInfoViewController()
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let movieInfoVC = MovieInfoViewController()
+        movieInfoVC.movie = movie[indexPath.row]
+        navigationController?.pushViewController(movieInfoVC, animated: true)
+    }
+    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         
-        movieinfoVC.movie  = movies[indexPath.row]
+        if let cell = tableView.cellForRow(at: indexPath) {
+            cell.contentView.backgroundColor = UIColor(named: "#1C2431-#E5E7EB")
+        }
+    }
+
+    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
         
-        navigationController?.show(movieinfoVC, sender: self)
+        if let cell = tableView.cellForRow(at: indexPath) {
+            cell.contentView.backgroundColor = UIColor(named: "#F9FAFB-#111827")
+        }
     }
 }
+
+

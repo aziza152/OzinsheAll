@@ -28,7 +28,7 @@
 "PASS_CHANGED" = "Құпия сөз сәтті өзгертілді";
 
 "EXIT" = "Шығу";
-"CONFIRM_EXIT_FROM_ACCOUNT" = "Сіз шынымен аккаунтыныздан";
+"CONFIRM_EXIT_FROM_ACCOUNT" = "Сіз шынымен аккаунтыныздан шығасызба";
 "YES_EXIT" = "Иә, шығу";
 "NO" = "Жоқ";
 

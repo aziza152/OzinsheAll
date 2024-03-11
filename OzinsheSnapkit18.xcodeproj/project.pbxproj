@@ -13,8 +13,6 @@
 		CD4EA7EA2B6E311600445A86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD4EA7E82B6E311600445A86 /* Main.storyboard */; };
 		CD4EA7EC2B6E311800445A86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD4EA7EB2B6E311800445A86 /* Assets.xcassets */; };
 		CD4EA7EF2B6E311800445A86 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD4EA7ED2B6E311800445A86 /* LaunchScreen.storyboard */; };
-		CD4EA7F82B75789600445A86 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4EA7F72B75789600445A86 /* OnboardingViewController.swift */; };
-		CD4EA7FA2B78F70A00445A86 /* OnboardingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4EA7F92B78F70A00445A86 /* OnboardingViewCell.swift */; };
 		CD4EA8072B792BC700445A86 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4EA8062B792BC700445A86 /* SignInViewController.swift */; };
 		CD4EA80B2B79325F00445A86 /* SFProDisplayBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD4EA8082B79324300445A86 /* SFProDisplayBold.ttf */; };
 		CD4EA80C2B79326300445A86 /* SFProDisplayRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD4EA8092B79324300445A86 /* SFProDisplayRegular.ttf */; };
@@ -57,13 +55,18 @@
 		CD8D2E892B92E0AA0061B676 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8D2E882B92E0AA0061B676 /* CategoryTableViewController.swift */; };
 		CD8D2E8B2B92E38A0061B676 /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8D2E8A2B92E38A0061B676 /* LanguageViewController.swift */; };
 		CD8D2E8D2B92E3B00061B676 /* LanguageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8D2E8C2B92E3B00061B676 /* LanguageTableViewCell.swift */; };
-		CD8D2E8F2B92E3FB0061B676 /* LogOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8D2E8E2B92E3FB0061B676 /* LogOutViewController.swift */; };
+		CD8D2E8F2B92E3FB0061B676 /* LogoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8D2E8E2B92E3FB0061B676 /* LogoutViewController.swift */; };
 		CD8D2E912B92E4230061B676 /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8D2E902B92E4230061B676 /* UserInfoViewController.swift */; };
 		CD8D2E932B92E4500061B676 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8D2E922B92E4500061B676 /* ChangePasswordViewController.swift */; };
-		CD8D2E952B9479360061B676 /* GenreAgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8D2E942B9479360061B676 /* GenreAgeViewController.swift */; };
 		CD90C5EA2B85FF4900FA978B /* MovieInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD90C5E92B85FF4900FA978B /* MovieInfoViewController.swift */; };
 		CD90C5ED2B861BC500FA978B /* GenreAgeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD90C5EC2B861BC500FA978B /* GenreAgeTableViewCell.swift */; };
 		CD90C5F02B86661500FA978B /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD90C5EF2B86661500FA978B /* MainCollectionViewCell.swift */; };
+		CD979DED2B9CDFCA004DD0BD /* NSObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD979DEC2B9CDFCA004DD0BD /* NSObject+Extension.swift */; };
+		CD979DEF2B9DA5E8004DD0BD /* maxNumberOfLines.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD979DEE2B9DA5E8004DD0BD /* maxNumberOfLines.swift */; };
+		CD979DF12B9DBD18004DD0BD /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD979DF02B9DBD18004DD0BD /* GradientView.swift */; };
+		CD979DF52B9DEAA6004DD0BD /* GenreAgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD979DF42B9DEAA6004DD0BD /* GenreAgeViewController.swift */; };
+		CD979DF92B9E13D9004DD0BD /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD979DF82B9E13D9004DD0BD /* OnboardingViewController.swift */; };
+		CD979DFB2B9E13DE004DD0BD /* OnboardingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD979DFA2B9E13DE004DD0BD /* OnboardingViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,8 +79,6 @@
 		CD4EA7EB2B6E311800445A86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CD4EA7EE2B6E311800445A86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CD4EA7F02B6E311800445A86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CD4EA7F72B75789600445A86 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
-		CD4EA7F92B78F70A00445A86 /* OnboardingViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewCell.swift; sourceTree = "<group>"; };
 		CD4EA8062B792BC700445A86 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		CD4EA8082B79324300445A86 /* SFProDisplayBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFProDisplayBold.ttf; sourceTree = "<group>"; };
 		CD4EA8092B79324300445A86 /* SFProDisplayRegular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFProDisplayRegular.ttf; sourceTree = "<group>"; };
@@ -126,15 +127,20 @@
 		CD8D2E882B92E0AA0061B676 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 		CD8D2E8A2B92E38A0061B676 /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
 		CD8D2E8C2B92E3B00061B676 /* LanguageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageTableViewCell.swift; sourceTree = "<group>"; };
-		CD8D2E8E2B92E3FB0061B676 /* LogOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutViewController.swift; sourceTree = "<group>"; };
+		CD8D2E8E2B92E3FB0061B676 /* LogoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutViewController.swift; sourceTree = "<group>"; };
 		CD8D2E902B92E4230061B676 /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
 		CD8D2E922B92E4500061B676 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
-		CD8D2E942B9479360061B676 /* GenreAgeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreAgeViewController.swift; sourceTree = "<group>"; };
 		CD90C5E92B85FF4900FA978B /* MovieInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInfoViewController.swift; sourceTree = "<group>"; };
 		CD90C5EC2B861BC500FA978B /* GenreAgeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreAgeTableViewCell.swift; sourceTree = "<group>"; };
 		CD90C5EF2B86661500FA978B /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
 		CD979DEA2B9599A9004DD0BD /* SFProDisplayMedium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SFProDisplayMedium.ttf; path = "../../../../Downloads/Ozin3 5/Ozin3/Fonts/SFProDisplayMedium.ttf"; sourceTree = "<group>"; };
 		CD979DEB2B963179004DD0BD /* SFProDisplayMedium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SFProDisplayMedium.ttf; path = "../../../../Downloads/Ozin3 5/Ozin3/Fonts/SFProDisplayMedium.ttf"; sourceTree = "<group>"; };
+		CD979DEC2B9CDFCA004DD0BD /* NSObject+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Extension.swift"; sourceTree = "<group>"; };
+		CD979DEE2B9DA5E8004DD0BD /* maxNumberOfLines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = maxNumberOfLines.swift; sourceTree = "<group>"; };
+		CD979DF02B9DBD18004DD0BD /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		CD979DF42B9DEAA6004DD0BD /* GenreAgeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenreAgeViewController.swift; sourceTree = "<group>"; };
+		CD979DF82B9E13D9004DD0BD /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		CD979DFA2B9E13DE004DD0BD /* OnboardingViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewCell.swift; sourceTree = "<group>"; };
 		F1FA24795B44A634C933B16A /* Pods-OzinsheSnapkit18.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OzinsheSnapkit18.release.xcconfig"; path = "Target Support Files/Pods-OzinsheSnapkit18/Pods-OzinsheSnapkit18.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -161,12 +167,8 @@
 		CD4EA7D62B6E311600445A86 = {
 			isa = PBXGroup;
 			children = (
-				CD4EA8352B7CB27600445A86 /* MovieProtocol.swift */,
-				CD4EA8342B7CB26600445A86 /* Model */,
 				CD4EA7E22B6E311600445A86 /* AppDelegate.swift */,
 				CD4EA7E42B6E311600445A86 /* SceneDelegate.swift */,
-				CD8D2E842B90F1100061B676 /* MovieTableViewCell.swift */,
-				CD4EA8152B7C763300445A86 /* Extensions */,
 				CD4EA7E12B6E311600445A86 /* OzinsheSnapkit18 */,
 				CD4EA7E02B6E311600445A86 /* Products */,
 				F192D7C62C725A9A5B5822F1 /* Pods */,
@@ -185,12 +187,12 @@
 		CD4EA7E12B6E311600445A86 /* OzinsheSnapkit18 */ = {
 			isa = PBXGroup;
 			children = (
-				CD4EA81B2B7C99EB00445A86 /* Controllers */,
-				CD84FBCD2B7FD62200EB5D5A /* SignInController */,
-				CD84FBCE2B7FD64700EB5D5A /* Onboarding */,
-				CD4EA8192B7C97CD00445A86 /* TabBarController.swift */,
 				CD4EA8162B7C91DF00445A86 /* Static */,
 				CD4EA7FB2B79201C00445A86 /* Fonts */,
+				CD4EA8342B7CB26600445A86 /* Model */,
+				CD4EA8152B7C763300445A86 /* Extensions */,
+				CD4EA81B2B7C99EB00445A86 /* Controllers */,
+				CD4EA8192B7C97CD00445A86 /* TabBarController.swift */,
 				CD4EA7E82B6E311600445A86 /* Main.storyboard */,
 				CD4EA7EB2B6E311800445A86 /* Assets.xcassets */,
 				CD4EA82D2B7C9CE900445A86 /* Localizable.strings */,
@@ -216,7 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				CD4EA8252B7C9B1900445A86 /* ProfileViewController.swift */,
-				CD8D2E8E2B92E3FB0061B676 /* LogOutViewController.swift */,
+				CD8D2E8E2B92E3FB0061B676 /* LogoutViewController.swift */,
 				CD8D2E902B92E4230061B676 /* UserInfoViewController.swift */,
 				CD8D2E922B92E4500061B676 /* ChangePasswordViewController.swift */,
 				CD8D2E8A2B92E38A0061B676 /* LanguageViewController.swift */,
@@ -228,10 +230,15 @@
 		CD4EA8152B7C763300445A86 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				CD4EA8352B7CB27600445A86 /* MovieProtocol.swift */,
 				CD4EA8132B7C75BE00445A86 /* TextFieldWithPadding.swift */,
 				CD4EA8272B7C9BC900445A86 /* Storage.swift */,
 				CD84FBDD2B8525E800EB5D5A /* TopAlignedCollectionViewFlowLayout.swift */,
 				CD8D2E6A2B8898250061B676 /* DynamicSize.swift */,
+				CD979DEC2B9CDFCA004DD0BD /* NSObject+Extension.swift */,
+				CD979DF02B9DBD18004DD0BD /* GradientView.swift */,
+				CD8D2E842B90F1100061B676 /* MovieTableViewCell.swift */,
+				CD979DEE2B9DA5E8004DD0BD /* maxNumberOfLines.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -247,9 +254,11 @@
 		CD4EA81B2B7C99EB00445A86 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				CD979DFC2B9E13EF004DD0BD /* Onboarding */,
+				CD84FBCD2B7FD62200EB5D5A /* SignInController */,
 				CD4EA81E2B7C9A2800445A86 /* Home */,
-				CD4EA8222B7C9ADB00445A86 /* Favorite */,
 				CD4EA81F2B7C9A7900445A86 /* Search */,
+				CD4EA8222B7C9ADB00445A86 /* Favorite */,
 				CD4EA8122B79588F00445A86 /* Profile */,
 			);
 			path = Controllers;
@@ -312,16 +321,6 @@
 			path = SignInController;
 			sourceTree = "<group>";
 		};
-		CD84FBCE2B7FD64700EB5D5A /* Onboarding */ = {
-			isa = PBXGroup;
-			children = (
-				CD4EA7F72B75789600445A86 /* OnboardingViewController.swift */,
-				CD4EA7F92B78F70A00445A86 /* OnboardingViewCell.swift */,
-			);
-			name = Onboarding;
-			path = SignInController/Onboarding;
-			sourceTree = "<group>";
-		};
 		CD84FBD52B84AF4800EB5D5A /* MainBanner */ = {
 			isa = PBXGroup;
 			children = (
@@ -363,7 +362,7 @@
 		CD90C5EB2B861B9B00FA978B /* MainAgeGenre */ = {
 			isa = PBXGroup;
 			children = (
-				CD8D2E942B9479360061B676 /* GenreAgeViewController.swift */,
+				CD979DF42B9DEAA6004DD0BD /* GenreAgeViewController.swift */,
 				CD90C5EC2B861BC500FA978B /* GenreAgeTableViewCell.swift */,
 				CD8D2E672B8707350061B676 /* GenreAgeCollectionViewCell.swift */,
 			);
@@ -377,6 +376,15 @@
 				CD90C5EF2B86661500FA978B /* MainCollectionViewCell.swift */,
 			);
 			path = MainCell;
+			sourceTree = "<group>";
+		};
+		CD979DFC2B9E13EF004DD0BD /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				CD979DF82B9E13D9004DD0BD /* OnboardingViewController.swift */,
+				CD979DFA2B9E13DE004DD0BD /* OnboardingViewCell.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		F192D7C62C725A9A5B5822F1 /* Pods */ = {
@@ -517,8 +525,8 @@
 				CD90C5EA2B85FF4900FA978B /* MovieInfoViewController.swift in Sources */,
 				CD90C5ED2B861BC500FA978B /* GenreAgeTableViewCell.swift in Sources */,
 				CD90C5F02B86661500FA978B /* MainCollectionViewCell.swift in Sources */,
-				CD8D2E952B9479360061B676 /* GenreAgeViewController.swift in Sources */,
 				CD8D2E8B2B92E38A0061B676 /* LanguageViewController.swift in Sources */,
+				CD979DF12B9DBD18004DD0BD /* GradientView.swift in Sources */,
 				CD4EA8212B7C9AA400445A86 /* SearchViewController.swift in Sources */,
 				CD4EA8142B7C75BE00445A86 /* TextFieldWithPadding.swift in Sources */,
 				CD8D2E832B8A8E980061B676 /* FavoriteViewController.swift in Sources */,
@@ -526,9 +534,10 @@
 				CD4EA8362B7CB27600445A86 /* MovieProtocol.swift in Sources */,
 				CD84FBDE2B8525E800EB5D5A /* TopAlignedCollectionViewFlowLayout.swift in Sources */,
 				CD4EA8382B7CB2F600445A86 /* Movie.swift in Sources */,
+				CD979DFB2B9E13DE004DD0BD /* OnboardingViewCell.swift in Sources */,
 				CD4EA8572B7F31A700445A86 /* MainBannerCollectionViewCell.swift in Sources */,
 				CD8D2E7A2B8A5F8B0061B676 /* SeasonSeriesViewController.swift in Sources */,
-				CD4EA7FA2B78F70A00445A86 /* OnboardingViewCell.swift in Sources */,
+				CD979DF52B9DEAA6004DD0BD /* GenreAgeViewController.swift in Sources */,
 				CD4EA81A2B7C97CD00445A86 /* TabBarController.swift in Sources */,
 				CD8D2E742B89A6B20061B676 /* SimilarCollectionViewCell.swift in Sources */,
 				CD4EA8402B7CB3BD00445A86 /* Screenshot.swift in Sources */,
@@ -539,23 +548,25 @@
 				CD8D2E782B8A5E8C0061B676 /* SeasonSeriesTableViewCell.swift in Sources */,
 				CD8D2E912B92E4230061B676 /* UserInfoViewController.swift in Sources */,
 				CD4EA8182B7C920B00445A86 /* Urls.swift in Sources */,
-				CD8D2E8F2B92E3FB0061B676 /* LogOutViewController.swift in Sources */,
+				CD8D2E8F2B92E3FB0061B676 /* LogoutViewController.swift in Sources */,
 				CD4EA8072B792BC700445A86 /* SignInViewController.swift in Sources */,
 				CD4EA8462B7CB45500445A86 /* Season.swift in Sources */,
 				CD8D2E722B89A69A0061B676 /* ScreenshotCollectionViewCell.swift in Sources */,
 				CD8D2E682B8707350061B676 /* GenreAgeCollectionViewCell.swift in Sources */,
+				CD979DED2B9CDFCA004DD0BD /* NSObject+Extension.swift in Sources */,
 				CD8D2E892B92E0AA0061B676 /* CategoryTableViewController.swift in Sources */,
+				CD979DF92B9E13D9004DD0BD /* OnboardingViewController.swift in Sources */,
 				CD4EA83A2B7CB35500445A86 /* Category.swift in Sources */,
 				CD4EA7E32B6E311600445A86 /* AppDelegate.swift in Sources */,
 				CD4EA84C2B7D23E100445A86 /* SignUpViewController.swift in Sources */,
 				CD4EA7E52B6E311600445A86 /* SceneDelegate.swift in Sources */,
 				CD84FBDC2B851F8000EB5D5A /* HistoryCollectionViewCell.swift in Sources */,
+				CD979DEF2B9DA5E8004DD0BD /* maxNumberOfLines.swift in Sources */,
 				CD8D2E7C2B8A5FBB0061B676 /* SeasonsSeriesCollectionViewCell.swift in Sources */,
 				CD8D2E932B92E4500061B676 /* ChangePasswordViewController.swift in Sources */,
 				CD4EA8512B7E22B200445A86 /* MainBannerTableViewCell.swift in Sources */,
 				CD4EA8262B7C9B1900445A86 /* ProfileViewController.swift in Sources */,
 				CD8D2E6D2B893BD10061B676 /* MoviePlayerViewController.swift in Sources */,
-				CD4EA7F82B75789600445A86 /* OnboardingViewController.swift in Sources */,
 				CD8D2E852B90F1100061B676 /* MovieTableViewCell.swift in Sources */,
 				CD4EA83E2B7CB39100445A86 /* CategoryAge.swift in Sources */,
 			);
