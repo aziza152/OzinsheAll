@@ -44,7 +44,23 @@ class SearchCollectionViewCell: UICollectionViewCell {
         labelText.snp.makeConstraints { make in
             make.verticalEdges.equalToSuperview().inset(8)
             make.horizontalEdges.equalToSuperview().inset(16)
-            make.height.equalTo(34)
+            make.height.equalTo(24)
         }
+    }
+    override var isSelected: Bool {
+        didSet {
+            updateBackgroundColor()
+        }
+    }
+    
+    override var isHighlighted: Bool {
+        didSet {
+            updateBackgroundColor()
+        }
+    }
+    
+    private func updateBackgroundColor() {
+        view.backgroundColor = isSelected || isHighlighted ? UIColor(named: "D1D5DB-9CA3AF") : UIColor(named: "F3F4F6-374151")
+        
     }
 }

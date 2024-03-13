@@ -24,6 +24,7 @@ class LanguageViewController: UIViewController, UIGestureRecognizerDelegate {
         view.backgroundColor = UIColor(named: "FFFFFF - 111827")
         view.layer.cornerRadius = 32
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        view.clipsToBounds = true
        
     return view
     }()
@@ -48,7 +49,9 @@ class LanguageViewController: UIViewController, UIGestureRecognizerDelegate {
         let table = UITableView()
             table.register(LanguageTableViewCell.self, forCellReuseIdentifier: "LanguageCell")
             table.backgroundColor = .clear
-            
+            table.separatorStyle = .none
+            table.showsVerticalScrollIndicator = false
+            table.tableFooterView = UIView(frame: .zero)
         return table
     }()
     
@@ -76,7 +79,7 @@ class LanguageViewController: UIViewController, UIGestureRecognizerDelegate {
         
         backgroundView.snp.makeConstraints { make in
             make.bottom.equalToSuperview()
-            make.left.right.equalTo(view.safeAreaLayoutGuide)
+            make.left.right.equalToSuperview()
             make.height.equalTo(303)
         }
         lineView.snp.makeConstraints { make in
@@ -86,11 +89,13 @@ class LanguageViewController: UIViewController, UIGestureRecognizerDelegate {
             make.width.equalTo(64)
         }
         titleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(58)
+           // make.top.equalToSuperview().inset(58)
+            make.top.equalTo(lineView.snp.bottom).offset(32)
             make.left.equalToSuperview().inset(24)
         }
         tableView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(98)
+          //  make.top.equalToSuperview().offset(98)
+            make.top.equalTo(titleLabel.snp.bottom).inset(dynamicValue(for: -12))
             make.right.left.equalTo(view.safeAreaLayoutGuide)
             make.bottom.equalToSuperview()
         }
@@ -101,34 +106,13 @@ class LanguageViewController: UIViewController, UIGestureRecognizerDelegate {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissView))
         tap.delegate = self
         view.addGestureRecognizer(tap)
-        
-      //  view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleDismiss)))
+   
     }
     
     @objc func dismissView() {
         self.dismiss(animated: true, completion: nil)
     }
-//
-//    @objc func handleDismiss(sender: UIPanGestureRecognizer) {
-//        switch sender.state {
-//        case .changed:
-//            viewTranslation = sender.translation(in: view)
-//            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-//                self.backgroundView.transform = CGAffineTransform(translationX: 0, y: self.viewTranslation.y)
-//            })
-//        case .ended:
-//            if viewTranslation.y < 100 {
-//                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-//                    self.backgroundView.transform = .identity
-//                })
-//            } else {
-//                dismiss(animated: true, completion: nil)
-//            }
-//        default:
-//            break
-//        }
-//    }
-    
+
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         if (touch.view?.isDescendant(of: backgroundView))! {
             return false
@@ -146,14 +130,18 @@ extension LanguageViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LanguageCell", for: indexPath) as! LanguageTableViewCell
+        cell.backgroundColor = .clear
         
         cell.languageLabel.text = languageArray[indexPath.row][0]
+        cell.grayView.isHidden = indexPath.row == languageArray.count - 1
+
         
         if Localize.currentLanguage() == languageArray[indexPath.row][1] {
             cell.checkImage.image = UIImage(named: "Check")
         } else {
             cell.checkImage.image = nil
         }
+       
         
         return cell
     }

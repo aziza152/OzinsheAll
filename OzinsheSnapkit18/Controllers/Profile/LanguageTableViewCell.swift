@@ -54,6 +54,7 @@ class LanguageTableViewCell: UITableViewCell {
         languageLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().inset(24)
             make.centerY.equalToSuperview()
+           // make.top.equalToSuperview().inset(3)
         }
         
         checkImage.snp.makeConstraints { make in

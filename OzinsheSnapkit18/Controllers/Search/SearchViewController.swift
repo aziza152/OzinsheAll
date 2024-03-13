@@ -186,8 +186,7 @@ class SearchViewController: UIViewController {
         
         if text.isEmpty {
             categoryLabel.text = "Санаттар"
-            searchButton.setImage(UIImage(named: "Search2")?.withRenderingMode(.alwaysOriginal), for: .normal)
-            searchButton.tintColor = UIColor(named: "TextGray2")
+          // searchButton.setImage(UIImage(named: "Search2")?.withRenderingMode(.alwaysOriginal), for: .normal)
             collectionView.isHidden = false
             tableView.isHidden = true
             movie.removeAll()
@@ -196,8 +195,7 @@ class SearchViewController: UIViewController {
             return
         } else {
             categoryLabel.text = "SEARCH_RESULTS".localized()
-            searchButton.setImage(UIImage(named: "Search2")?.withRenderingMode(.alwaysTemplate), for: .normal)
-            searchButton.tintColor = UIColor(named: "LightPurple")
+            searchButton.setImage(UIImage(named: "searchSelected"), for: .normal)
             collectionView.isHidden = true
             tableView.isHidden = false
             tableView.snp.remakeConstraints { make in
@@ -292,15 +290,18 @@ class SearchViewController: UIViewController {
     
     @objc func editingDiDBegin(_ sender: TextFieldWithPadding) {
         sender.layer.borderColor = UIColor(red: 0.59, green: 0.33, blue: 0.94, alpha: 1.00).cgColor
+        searchButton.setImage(UIImage(named: "searchSelected"), for: .normal)
     }
     
     @objc func editingDidEnd(_ sender: TextFieldWithPadding) {
-        sender.layer.borderColor = UIColor(red: 0.61, green: 0.64, blue: 0.69, alpha: 1.00).cgColor
+//        sender.layer.borderColor = UIColor(red: 0.61, green: 0.64, blue: 0.69, alpha: 1.00).cgColor
+        sender.layer.borderColor = UIColor(red: 0.59, green: 0.33, blue: 0.94, alpha: 1.00).cgColor
+        searchButton.setImage(UIImage(named: "searchSelected"), for: .normal)
     }
     
     @objc func editingChanged(_ sender: TextFieldWithPadding) {
-        guard let text = sender.text else { return }
-        clearButton.isHidden = text.isEmpty
+      //  guard let text = sender.text else { return }
+       // clearButton.isHidden = text.isEmpty
         downloadMovies()
     }
     

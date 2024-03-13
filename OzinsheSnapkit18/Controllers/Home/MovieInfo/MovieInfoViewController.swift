@@ -26,6 +26,7 @@ class MovieInfoViewController: UIViewController, UICollectionViewDelegate, UICol
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.contentInsetAdjustmentBehavior = .never
+        scrollView.automaticallyAdjustsScrollIndicatorInsets = false
         
         return scrollView
     }()
@@ -215,7 +216,7 @@ class MovieInfoViewController: UIViewController, UICollectionViewDelegate, UICol
         let label = UILabel()
         label.text = "Скриншоттар"
         label.textColor = UIColor(named: "111827 - FFFFFF")
-        label.font = UIFont(name: "SFProDisplay-Bold", size: 24)
+        label.font = UIFont(name: "SFProDisplay-Bold", size: 16)
         
         return label
     }()
@@ -224,7 +225,7 @@ class MovieInfoViewController: UIViewController, UICollectionViewDelegate, UICol
         let label = UILabel()
         label.text = "Ұқсас телехикаялар"
         label.textColor = UIColor(named: "111827 - FFFFFF")
-        label.font = UIFont(name: "SFProDisplay-Bold", size: 24)
+        label.font = UIFont(name: "SFProDisplay-Bold", size: 16)
         
         return label
     }()
@@ -244,7 +245,7 @@ class MovieInfoViewController: UIViewController, UICollectionViewDelegate, UICol
     
     let screenshotsCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 0.0, left: 24.0, bottom: 0.0, right: 24.0)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 24.0, bottom: 0, right: 24.0)
         layout.itemSize = CGSize(width: 184, height: 112)
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 16
@@ -260,9 +261,9 @@ class MovieInfoViewController: UIViewController, UICollectionViewDelegate, UICol
     }()
     
     let similarCollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 0.0, left: 24.0, bottom: 0.0, right: 24.0)
-        layout.itemSize = CGSize(width: 112, height: 208)
+        let layout = TopAlignedCollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 24.0, bottom: 0.0, right: 24.0)
+        layout.itemSize = CGSize(width: 112, height: 224)
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 12
         layout.minimumInteritemSpacing = 12
@@ -279,6 +280,8 @@ class MovieInfoViewController: UIViewController, UICollectionViewDelegate, UICol
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+       similarCollectionView.contentInsetAdjustmentBehavior = .never
+
         setupUI()
         setupConstraints()
         downloadSimilar()
@@ -385,7 +388,8 @@ class MovieInfoViewController: UIViewController, UICollectionViewDelegate, UICol
         
         scroll.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.bottom.right.left.equalToSuperview()
+            make.right.left.equalToSuperview()
+            make.bottom.equalToSuperview()
         }
         infoView.snp.makeConstraints { make in
             make.top.equalToSuperview()
@@ -504,9 +508,9 @@ class MovieInfoViewController: UIViewController, UICollectionViewDelegate, UICol
         }
         similarCollectionView.snp.makeConstraints { make in
             make.right.left.equalToSuperview()
-            make.top.equalTo(similarMoviesLabel.snp.bottom).offset(16)
-            make.bottom.equalToSuperview().inset(45)
-            make.height.equalTo(220)
+            make.top.equalTo(similarMoviesLabel.snp.bottom).offset(0)
+            make.bottom.equalToSuperview().inset(80)
+            make.height.equalTo(260)
         }
     }
     @objc func backButtonTapped() {
@@ -537,7 +541,6 @@ class MovieInfoViewController: UIViewController, UICollectionViewDelegate, UICol
         if movie.movieType == "MOVIE" {
             let playerVC = MoviePlayerViewController()
             playerVC.video_link = movie.video_link
-           // playerVC.movie = movie
             navigationController?.show(playerVC, sender: self)
             navigationItem.title = ""
         } else {
@@ -650,6 +653,13 @@ class MovieInfoViewController: UIViewController, UICollectionViewDelegate, UICol
             
             similarCell.imageView.sd_setImage(with: URL(string: similarMovies[indexPath.row].poster_link))
             similarCell.titleLabel.text = similarMovies[indexPath.row].name
+           // similarCell.genreTitleLabel.text = mainMovie.genres.first?.name ?? ""
+            
+            if let genrename = similarMovies[indexPath.row].genres.first {
+                similarCell.genreTitleLabel.text = genrename.name
+            } else {
+                similarCell.titleLabel.text = ""
+            }
             
             return similarCell
         }

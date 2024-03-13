@@ -22,7 +22,7 @@ class SimilarCollectionViewCell: UICollectionViewCell {
     let titleLabel = {
         let label = UILabel()
         label.font = UIFont(name: "SFProDisplay-Semibold", size: 12)
-        label.textColor = UIColor(red: 0.07, green: 0.09, blue: 0.15, alpha: 1)
+        label.textColor = UIColor(named: "111827-FFFFFF")
         label.numberOfLines = 2
         
         return label
@@ -30,8 +30,9 @@ class SimilarCollectionViewCell: UICollectionViewCell {
     
     let genreTitleLabel = {
         let label = UILabel()
-        label.textColor = UIColor(named: "111827 - FFFFFF")
+        label.textColor = UIColor(named: "9CA3AF")
         label.font = UIFont(name: "SFProDisplay-Regular", size: 12)
+        label.numberOfLines = 2
         
         return label
     }()
@@ -40,7 +41,7 @@ class SimilarCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super .init(frame: frame)
         setupUI()
-        backgroundColor = .cyan
+        backgroundColor = UIColor(named: "FFFFFF - 111827")
     }
     
     required init?(coder: NSCoder) {
@@ -50,34 +51,29 @@ class SimilarCollectionViewCell: UICollectionViewCell {
     //MARK: - setupUI
     func setupUI() {
 
-        contentView.addSubview(imageView)
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(genreTitleLabel)
+       addSubview(imageView)
+       addSubview(titleLabel)
+       addSubview(genreTitleLabel)
         
         imageView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.right.left.equalToSuperview()
-            make.bottom.equalToSuperview()
             make.height.equalTo(164)
     }
         
         titleLabel.snp.makeConstraints { make in
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
+            make.left.right.equalToSuperview()
             make.top.equalTo(imageView.snp.bottom).offset(8)
     }
         genreTitleLabel.snp.makeConstraints { make in
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
+            make.left.right.equalToSuperview()
             make.top.equalTo(titleLabel.snp.bottom).offset(4)
+          
         }
     }
     
     //MARK: - setData
     func setData(mainMovie: Movie) {
-        titleLabel.text = mainMovie.name
-        genreTitleLabel.text = mainMovie.genres.first?.name ?? ""
-        imageView.sd_setImage(with: URL(string: mainMovie.poster_link))
-        
+
     }
 }
