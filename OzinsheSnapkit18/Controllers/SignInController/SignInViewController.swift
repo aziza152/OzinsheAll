@@ -85,8 +85,8 @@ class SignInViewController: UIViewController {
         textField.keyboardType = .emailAddress
         textField.textContentType = .emailAddress
         textField.autocapitalizationType = .none
-        textField.addTarget(self, action: #selector(editingDidbegin), for: .editingDidBegin)
-        textField.addTarget(self, action: #selector(editingDidEnd), for: .editingDidEnd)
+        textField.addTarget(self, action: #selector(textFieldDidBeginEditing), for: .editingDidBegin)
+        textField.addTarget(self, action: #selector(textFieldDidEndEditing), for: .editingDidEnd)
         
         return textField
     }()
@@ -175,20 +175,9 @@ class SignInViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .black
         setupUI()
         hideKeyboardWhenTappedAround()
-        // localizedLanguage()
+       //  localizedLanguage()
         
     }
-    @objc func editingDidbegin(_ sender: TextFieldWithPadding) {
-        errorLabel.text = ""
-        sender.layer.borderColor = UIColor(red: 0.59, green: 0.33, blue: 0.94, alpha: 1.00).cgColor
-        errorLabel.isHidden = true
-        view.layoutIfNeeded()
-    }
-
-    @objc func editingDidEnd(_ sender: TextFieldWithPadding) {
-        sender.layer.borderColor = UIColor(red: 229/255, green: 245/255, blue: 240/255, alpha: 1.00).cgColor
-    }
-
     
     func hideKeyboardWhenTappedAround() {
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
@@ -211,18 +200,6 @@ class SignInViewController: UIViewController {
         let email = youEmailTextfield.text!
         let password = youPassowrdTextField.text!
 
-        if email.isEmpty || password.isEmpty {
-            return
-        }
-        if !isValidEmail(email) {
-            errorLabel.text = "Қате формат"
-            errorLabel.isHidden = false
-            youEmailTextfield.layer.borderColor = UIColor.red.cgColor
-            youEmailTextfield.layer.borderWidth = 1
-            passwordLabelTopConstraint?.update(offset: 54)
-            view.layoutIfNeeded()
-                return
-        }
         SVProgressHUD.show()
         
         let parameters = ["email": email, "password": password]
@@ -346,30 +323,45 @@ class SignInViewController: UIViewController {
     }
     
         func localizedLanguage() {
-            salemLabel.text = "HELLO_LABEL".localized()
-            signInLabel.text = "DETAIL_SIGN_IN".localized()
-            youEmailTextfield.placeholder = "SIGN_UP_EMAIL".localized()
-            youPassowrdTextField.placeholder = "USER_PASSWORD_CHANGE".localized()
-            signInButton.setTitle("SIGN_IN_BUTTON_UP".localized(), for: .normal)
-            passwordLabel.text = "CHANGE_PASSWORD_LABEL".localized()
+            salemLabel.text = "HELLO".localized()
+            signInLabel.text = "SIGN_IN".localized()
+            youEmailTextfield.placeholder = "YOUR_EMAIL".localized()
+            youPassowrdTextField.placeholder = "YOUR_PASSWORD".localized()
+            signInButton.setTitle("LOGIN".localized(), for: .normal)
+            passwordLabel.text = "PASSWORD".localized()
         }
 }
 
 extension SignInViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == youEmailTextfield {
+            errorLabel.isHidden = true
+           // passwordLabelTopConstraint?.update(offset: 8)
+                    view.layoutIfNeeded()
             youEmailTextfield.layer.borderColor = UIColor(red: 0.59, green: 0.33, blue: 0.94, alpha: 1.00).cgColor
-            } else if textField == youPassowrdTextField {
-                youPassowrdTextField.layer.borderColor = UIColor(red: 0.59, green: 0.33, blue: 0.94, alpha: 1.00).cgColor
-            }
+           
+        } else if textField == youPassowrdTextField {
+            youPassowrdTextField.layer.borderColor = UIColor(red: 0.59, green: 0.33, blue: 0.94, alpha: 1.00).cgColor
         }
-        
-        func textFieldDidEndEditing(_ textField: UITextField) {
-            if textField == youEmailTextfield {
-                youEmailTextfield.layer.borderColor = UIColor(red: 0.90, green: 0.92, blue: 0.94, alpha: 1.00).cgColor
-            } else if textField == youPassowrdTextField {
-                youPassowrdTextField.layer.borderColor = UIColor(red: 0.90, green: 0.92, blue: 0.94, alpha: 1.00).cgColor
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == youEmailTextfield {
+            if let emailText = youEmailTextfield.text, !isValidEmail(emailText) {
+                errorLabel.isHidden = false
+                textField.layer.borderColor = UIColor.red.cgColor
+                passwordLabelTopConstraint?.update(offset: 54)
+                view.layoutIfNeeded()
+                return
+            }
+            } else {
+                errorLabel.isHidden = true
+                textField.layer.borderColor = UIColor(red: 0.90, green: 0.92, blue: 0.94, alpha: 1.00).cgColor
+                passwordLabelTopConstraint?.update(offset: 8)
+                           view.layoutIfNeeded()
+    
             }
         }
     }
+    
     
